@@ -105,10 +105,16 @@ def main():
     network=modelling.network(PIXEL=PIXEL, BATCH_SIZE=BATCH_SIZE, lr=lr, EPOCH = EPOCH, X_CHANNEL = X_CHANNEL, 
             Y_CHANNEL = Y_CHANNEL, smooth = smooth, normalisation = normalisation)
     tf.keras.backend.clear_session()
-    model = network.get_unet()
+
     if args.load_weight == 'yes':
-        model.load_weights(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
+        model = network.get_unet(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
         print('Load Weight - YES')
+    if args.load_weight == 'no':
+        model = network.get_unet()
+
+    #if args.load_weight == 'yes':
+        #model.load_weights(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
+        #print('Load Weight - YES')
 
     if not os.path.isdir(cur_dir+'/'+paprameter_file):
         os.mkdir(cur_dir+'/'+paprameter_file)
