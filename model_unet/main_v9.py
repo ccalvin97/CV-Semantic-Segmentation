@@ -5,12 +5,13 @@
 
 '''
 ===========================
-V4:
+V9:
     version from colab
     solve the problem of indentation
     All basic function done, prediction, visualisation, training and validation
     add mIOU criteria
     ok to run, mute warning and hyperparameter testing
+    load weight
 ===========================
 
 '''
@@ -73,6 +74,8 @@ def main():
                 help='data dir for val PS: do not add / in the end ex: /content/gdrive/My Drive/CV_image_segmentation/out/label')
     parser.add_argument('-is_predict', '--is_predict', type=int, default=0,
                 help='whether predict the data, 1-yes 0-no')
+    parser.add_argument('-load_weight', '--load_weight', type=str, default='no',
+            help='no or yes to load the model weight')
 
 
     args = parser.parse_args()
@@ -88,6 +91,8 @@ def main():
    # X_NUM = 25  # your traning data number
     smooth = 1
     normalisation = True
+    cur_dir=os.getcwd()
+    paprameter_file = 'model_parameter'
 
 
     images = os.listdir(args.pathX)
@@ -101,20 +106,19 @@ def main():
             Y_CHANNEL = Y_CHANNEL, smooth = smooth, normalisation = normalisation)
     tf.keras.backend.clear_session()
     model = network.get_unet()
+    if args.load_weight == 'yes':
+        model.load_weights(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
+        print('Load Weight - YES')
 
-
-
-    cur_dir=os.getcwd()
-    paprameter_file = 'model_parameter'
     if not os.path.isdir(cur_dir+'/'+paprameter_file):
         os.mkdir(cur_dir+'/'+paprameter_file)
     checkpoint = ModelCheckpoint(os.path.join(cur_dir+'/'+paprameter_file,'_'+str(lr)+'_'+"keras_unet_model.h5"),
                              verbose=1, save_best_only=True)
     early_stop = EarlyStopping(monitor="val_loss", patience=10, verbose=1)
-    history = model.fit_generator(network.generator(args.pathX, args.pathY, X_NUM),steps_per_epoch=train_steps , validation_data = network.generator(args.pathX_val, args.pathY_val, valX_NUM), validation_steps=val_steps, epochs=EPOCH, use_multiprocessing=True, callbacks=[early_stop, checkpoint])
+    history = model.fit_generator(network.generator(args.pathX, args.pathY, X_NUM),steps_per_epoch=train_steps , validation_data = network.generator(args.pathX_val, args.pathY_val, valX_NUM),
+        validation_steps=val_steps, epochs=EPOCH, use_multiprocessing=True, callbacks=[early_stop, checkpoint])
 
 
-    # end_time = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
     #network.save_model(history, model)
     #visualisation(path_pred, BATCH_SIZE, normalisation, 20)
     if args.is_predict:
