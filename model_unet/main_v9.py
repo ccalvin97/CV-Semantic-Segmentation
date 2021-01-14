@@ -105,19 +105,20 @@ def main():
     network=modelling.network(PIXEL=PIXEL, BATCH_SIZE=BATCH_SIZE, lr=lr, EPOCH = EPOCH, X_CHANNEL = X_CHANNEL, 
             Y_CHANNEL = Y_CHANNEL, smooth = smooth, normalisation = normalisation)
     tf.keras.backend.clear_session()
+    if not os.path.isdir(cur_dir+'/'+paprameter_file):
+        os.mkdir(cur_dir+'/'+paprameter_file)
+
 
     if args.load_weight == 'yes':
-        model = network.get_unet(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
+        model = network.get_unet(pretrained_weights = model_weights_name)
         print('Load Weight - YES')
     if args.load_weight == 'no':
         model = network.get_unet()
 
-    #if args.load_weight == 'yes':
-        #model.load_weights(cur_dir+'/'+paprameter_file+'/'+'_'+str(lr)+'_'+"keras_unet_model.h5")
-        #print('Load Weight - YES')
+    filename=os.listdir(cur_dir +'/'+ paprameter_file)
+    #model_weights_name = cur_dir + '/' + paprameter_file + '/'+ filename[0]
 
-    if not os.path.isdir(cur_dir+'/'+paprameter_file):
-        os.mkdir(cur_dir+'/'+paprameter_file)
+
     checkpoint = ModelCheckpoint(os.path.join(cur_dir+'/'+paprameter_file,'_'+str(lr)+'_'+"keras_unet_model.h5"),
                              verbose=1, save_best_only=True)
     early_stop = EarlyStopping(monitor="val_loss", patience=10, verbose=1)

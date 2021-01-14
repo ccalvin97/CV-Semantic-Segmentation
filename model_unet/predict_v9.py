@@ -6,10 +6,12 @@ import cv_unet_v9 as modelling
 import sys
 import os
 import numpy as np
+################ CPU only ##############
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+########################################
 
-
-path_pred = '/home/GDDC-CV2/Desktop/data_1000/test_x'
-path_pred_out = '/home/GDDC-CV2/Desktop/data_1000/test_y'
+path_pred = '/home/GDDC-CV2/Desktop/data_1000/val_x'
+path_pred_out = '/home/GDDC-CV2/Desktop/data_1000/pred_test_y'
 #checkpoint_name = 'keras_unet_model.h5'
 
 

@@ -178,7 +178,7 @@ class network():
         conv12 = Conv2D(1, 1, 1, activation='sigmoid')(conv12)
         model = Model(inputs, conv12)
         if pretrained_weights:
-            model.load_weights(pretrained_weights)
+            model.load_weights(pretrained_weights, by_name=True)
 
         print(model.summary())
         model.compile(optimizer=Adam(lr=self.lr, decay=1e-6), loss=self.dice_coef_loss,  metrics=[self.dice_coef, self.binary_accuracy, MeanIoU(num_classes=2), self.true_positive_rate])
