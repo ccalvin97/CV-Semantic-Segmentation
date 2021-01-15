@@ -1,18 +1,25 @@
 # coding: utf-8
 # -*- coding: utf-8 -*-
 
+import os
+
+################ CPU only ##############
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+########################################
 
 from keras_segmentation.models.unet import vgg_unet
-epochs = 20
+epochs = 1
 n_classes = 2
 model = vgg_unet(n_classes=n_classes ,  input_height=1024, input_width=1024)
 
 model.train( 
-    train_images =  "/home/GDDC-CV1/Desktop/data_1024/train_x_png/",
-    train_annotations = "/home/GDDC-CV1/Desktop/data_1024/train_y_png/",
+    train_images =  "/home/GDDC-CV1/Desktop/data_1024/test_x/",
+    train_annotations = "/home/GDDC-CV1/Desktop/data_1024/test_y/",
     checkpoints_path = "vgg_unet" , epochs=epochs
 )
 
+
+'''
 input_image = "/home/GDDC-CV1/Desktop/data_1024/pred_x_png/0043000000100_.png"
 out = model.predict_segmentation(
     inp=input_image,
@@ -42,4 +49,4 @@ input_image = "/home/GDDC-CV1/Desktop/data_1024/val_x_png/test_215_.png"
 out = model.predict_segmentation(
     inp=input_image,
     out_fname="/home/GDDC-CV1/Desktop/pred_out//test_215_.png")
-
+'''
