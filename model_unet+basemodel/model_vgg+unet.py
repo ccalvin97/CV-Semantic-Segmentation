@@ -16,30 +16,30 @@ model.train(
 input_image = "/home/GDDC-CV1/Desktop/data_1024/pred_x_png/0043000000100_.png"
 out = model.predict_segmentation(
     inp=input_image,
-    out_fname="/home/GDDC-CV1/Desktop/model_unet+basemodel/pred_out/0043000000100_.png")
+    out_fname="/home/GDDC-CV1/Desktop/pred_out//0043000000100_.png")
 
 
 
 input_image = "/home/GDDC-CV1/Desktop/data_1024/pred_x_png/0043000022200_.png"
 out = model.predict_segmentation(
     inp=input_image,
-    out_fname="/home/GDDC-CV1/Desktop/model_unet+basemodel/pred_out/0043000022200_.png")
+    out_fname="/home/GDDC-CV1/Desktop/pred_out//0043000022200_.png")
 
 
 
 input_image = "/home/GDDC-CV1/Desktop/data_1024/pred_x_png/1401070129_.png"
 out = model.predict_segmentation(
     inp=input_image,
-    out_fname="/home/GDDC-CV1/Desktop/model_unet+basemodel/pred_out/1401070129_.png")
+    out_fname="/home/GDDC-CV1/Desktop/pred_out//1401070129_.png")
 
 
 input_image = "/home/GDDC-CV1/Desktop/data_1024/val_x_png/austin16_20_.png"
 out = model.predict_segmentation(
     inp=input_image,
-    out_fname="/home/GDDC-CV1/Desktop/model_unet+basemodel/pred_out/austin16_20_.png")
+    out_fname="/home/GDDC-CV1/Desktop/pred_out//austin16_20_.png")
 
 input_image = "/home/GDDC-CV1/Desktop/data_1024/val_x_png/test_215_.png"
 out = model.predict_segmentation(
     inp=input_image,
-    out_fname="/home/GDDC-CV1/Desktop/model_unet+basemodel/pred_out/test_215_.png")
+    out_fname="/home/GDDC-CV1/Desktop/pred_out//test_215_.png")
 
