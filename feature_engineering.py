@@ -337,37 +337,42 @@ class blk_white():
 
 
 
-#### Convert tif -> jpg 二值化 ####
+#### Convert tif -> jpg + 二值化 ####
 class type_change():
-    def __init__(self, path_label, path, out, out_y):
-        self.out = out
-        self.path_label = path_label
+    def __init__(self, path_label, path, out, out_y, pic_type):
         self.path = path
+        self.path_label = path_label
+        self.out = out
         self.out_y = out_y
+        self.pic_type = pic_type
+        '''
+        out: output x dir
+        path: input x dir
+        path_label: dir y dir
+        out_y: dir  
+        pic_type: str, picture type, ex: 'tif'
+
         '''
         address_list=[]
-        pattern=re.compile(r'.*.tif')
+        pattern=re.compile(r'.*.'+self.pic_type)
         for home, dirs, files in os.walk(self.path):
             for filename in files:
                 if pattern.findall(filename):
                     address_list.append(os.path.join(home, filename))
         self.address_list=address_list
-        '''
+        
 
         address_list_y=[]
-        pattern=re.compile(r'.*.tif')
+        pattern=re.compile(r'.*.'+self.pic_type)
         for home, dirs, files in os.walk(self.path_label):
             for filename in files:
                 if pattern.findall(filename):
                     address_list_y.append(os.path.join(home, filename))
-
         self.address_list_y = address_list_y
 
 
     def convert_type(self):
-        
         for image in self.address_list_y:
-           # a, b = os.path.splitext(image)
             img_name=image.split('/')[-1]            
             img = cv2.imread(image, 0)  #这里选择-1，不进行转化
             #img=Image.open(image)
@@ -376,57 +381,83 @@ class type_change():
             ret, img = cv2.threshold(img, 2, 1, 0)
             img = Image.fromarray(img, mode ='P')
             img.save(self.out_y+'/'+img_name.split('.')[0]+".png")
-        '''
+        
         for image in self.address_list:
-           # a, b = os.path.splitext(image)
             img_name=image.split('/')[-1]
             img = cv2.imread(image,-1)  #这里选择-1，不进行转化
             cv2.imwrite(self.out+'/'+img_name.split('.')[0]+".png", img)
+        
+
+
+
+#### Picture Mirror Fill Function ####
+class fill_transform():
+    def __init__(self,  path, out, w, pic_type):
+        self.out = out
+        self.path = path
+        self.w = w
+        self.pic_type = pic_type
         '''
-
-
-
-
-#### Convert pixel  ####
-class size_change():
-    def __init__(self, path_label):
-        self.path_label = path_label
-
-        address_list_y=[]
-        pattern=re.compile(r'.*.png')
-        for home, dirs, files in os.walk(self.path_label):
+        out: output dir
+        path: input dir
+        w: wide and long of output picture
+        pic_type: str, picture type, ex: 'tif'
+        '''
+        address_list=[]
+        pattern=re.compile(r'.*.'+self.pic_type)
+        for home, dirs, files in os.walk(self.path):
             for filename in files:
                 if pattern.findall(filename):
-                    address_list_y.append(os.path.join(home, filename))
+                    address_list.append(os.path.join(home, filename))
+        self.address_list=address_list
 
-        self.address_list_y = address_list_y
 
 
     def convert_type(self):
-        '''
-        Function: Convert pjg tif
-        '''
-        for image in self.address_list_y:
-            img_name=image.split('/')[-1]
-            #img = cv2.imread(image,0)
-            #img=io.imread(image)
-            img=Image.open(image)
+        for image in self.address_list:
+            a, b = os.path.splitext(image)
+            img_name=image.split('/')[-1].split('.')[0]
+            img = Image.open(image)
+            width, hight = img.size
+            fill_w = int((self.w - width)/2)
             img = np.array(img)
-            pdb.set_trace()
-            img =  img/255.0
-            img = Image.fromarray(img)
-            #if img.mode != 'RGB':
-                #img = img.convert('RGB')
-            #img.save(self.path_label+'/'+img_name)
-            cv2.imwrite(self.path_label+'/'+img_name)
+            img = cv2.copyMakeBorder(img, fill_w, fill_w, fill_w, fill_w,  borderType=cv2.BORDER_REFLECT)
+            cv2.imwrite( self.out + '/' + img_name + "_"  + b , img, [cv2.IMWRITE_JPEG_QUALITY, 100])
 
 
 
 
 
+#### Convert pic type  ####
+class type_change_one():
+    def __init__(self ,path, out, pic_type, pic_type_out):
+        self.path = path
+        self.out = out
+        self.pic_type = pic_type
+        self.pic_type_out = pic_type_out
+        '''
+        out: output x dir
+        path: input x dir
+        path_label: dir y dir
+        out_y: dir
+        pic_type: str, picture type, ex: 'tif'
+
+        '''
+        address_list=[]
+        pattern=re.compile(r'.*.'+self.pic_type)
+        for home, dirs, files in os.walk(self.path):
+            for filename in files:
+                if pattern.findall(filename):
+                    address_list.append(os.path.join(home, filename))
+        self.address_list=address_list
 
 
+    def convert_type(self):
 
+        for image in self.address_list:
+            img_name=image.split('/')[-1]
+            img = cv2.imread(image,-1)  #这里选择-1，不进行转化
+            cv2.imwrite(self.out+'/'+img_name.split('.')[0]+"."+self.pic_type_out, img)
 
 
 
