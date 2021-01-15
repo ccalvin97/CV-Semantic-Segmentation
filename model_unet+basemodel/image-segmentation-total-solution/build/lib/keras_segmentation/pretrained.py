@@ -41,12 +41,14 @@ def pspnet_50_ADE_20K():
         "model_class": "pspnet_50",
     }
 
-    model_url = "https://www.dropbox.com/s/" \
-                "0uxn14y26jcui4v/pspnet50_ade20k.h5?dl=1"
-    latest_weights = keras.utils.get_file("pspnet50_ade20k.h5", model_url)
+    #model_url = "https://www.dropbox.com/s/0uxn14y26jcui4v/pspnet50_ade20k.h5?dl=1"
 
+    ##### Altered            
+    #latest_weights = keras.utils.get_file("pspnet50_ade20k.h5", model_url)
+    #latest_weights = keras.utils.get_file("/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/model_unet+basemodel/pspnet50_ade20k.h5")
+    latest_weights="/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/model_unet+basemodel/image-segmentation-total-solution/build/lib/keras_segmentation/pspnet50_ade20k.h5"
     return model_from_checkpoint_path(model_config, latest_weights)
-
+    #####
 
 def pspnet_101_cityscapes():
 
