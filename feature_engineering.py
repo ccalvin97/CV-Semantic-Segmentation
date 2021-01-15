@@ -20,7 +20,7 @@ random.seed(2)
 
 '''
 ========================================
-Version 4
+Version 5
 
 check X data dimension == 1000,1000,3
 check Y data dimension and range between 0 and 1
@@ -30,18 +30,6 @@ Add all black filter function
 '''
 
 
-'''
-path = data dir for train_x or val_x
-path_label = data dir for train_y or val_y
-out_x: val x dir
-out_y: val y dir
-'''
-path = ''
-path_label='/home/GDDC-CV2/Desktop/data_1000/val_y'
-#out_x='/home/GDDC-CV1/Desktop/data_512/val_x'
-#out_y='/home/GDDC-CV1/Desktop/data_512/val_y'
-out = '/home/GDDC-CV2/Desktop/data_1000/val_y_convert_colour'
-ratio=0.3
 
 
 
@@ -53,29 +41,33 @@ def data_resize(path_x, path_y, width=512, height=512):
     PS. This function will overwrite original data
     '''
     address_list=[]
-    pattern=re.compile(r'.*.tif')
-    for home, dirs, files in os.walk(path):
+    pattern=re.compile(r'.*.jpeg')
+    for home, dirs, files in os.walk(path_x):
         for filename in files:
             if pattern.findall(filename):
                 address_list.append(os.path.join(home, filename))
-
-    address_list_y=[]
-    pattern=re.compile(r'.*.tif')
-    for home, dirs, files in os.walk(path_y):
-        for filename in files:
-            if pattern.findall(filename):
-                address_list_y.append(os.path.join(home, filename))
-
+    try:
+        address_list_y=[]
+        pattern=re.compile(r'.*.tif')
+        for home, dirs, files in os.walk(path_y):
+            for filename in files:
+                if pattern.findall(filename):
+                    address_list_y.append(os.path.join(home, filename))
+    except:
+        print('Warning - No Label')
     
     for image in address_list:
         img = Image.open(image)
         img = img.resize((width, height),Image.ANTIALIAS) #resize image with high-quality
         img.save(image)
 
-    for image in address_list_y:
-        img = Image.open(image)
-        img = img.resize((width, height),Image.ANTIALIAS) #resize image with high-quality
-        img.save(image)
+    try:
+        for image in address_list_y:
+            img = Image.open(image)
+            img = img.resize((width, height),Image.ANTIALIAS) #resize image with high-quality
+            img.save(image)
+    except:
+        print('Warning - No Label')
 
 
 def data_train_val_split(pathX, pathY, out_x, out_y):
@@ -112,7 +104,6 @@ def data_train_val_split(pathX, pathY, out_x, out_y):
         shutil.move(pathY + '/' + j, out_y)
     
 
-#data_train_val_split(path, path_label, out_x, out_y)
 
 #######################################################
 class check_x():
@@ -159,13 +150,6 @@ class check_x():
             os.remove(self.path_label+'/'+i)
     
 
-#check X data
-
-#res=check_x(path, path_label).check_data_dim()
-'''
-pdb.set_trace()
-delete_invalid_data_dim(path, path_label, res)
-'''
 
 
 
@@ -237,11 +221,6 @@ class check_y():
         print(i)
 
 
-#check_y(path, path_label).check_y_data()
-#check_y(path, path_label).modify_y_data()
-
-#data_resize(path, path_label)
-
 
 #################################################
 
@@ -279,8 +258,6 @@ class check_x_size():
             os.remove(self.path+'/'+i)
             os.remove(self.path_label+'/'+i)
 
-#res=check_x_size(path, path_label).check_size()
-#check_x_size(path, path_label).delete_small_data(res)
  
 
 
@@ -324,8 +301,6 @@ class check_black():
             os.remove(self.path+'/'+i)
             os.remove(self.path_label+'/'+i)
 
-#res=check_black(path, path_label).check_y_data()
-#check_black(path, path_label).delete_black_data(res)
 
 
 #### Convert black -> white white -> black ####
@@ -335,7 +310,6 @@ class blk_white():
         self.path_label = path_label
 
         address_list_y=[]
-        pdb.set_trace()
         pattern=re.compile(r'.*.tif')
         for home, dirs, files in os.walk(self.path_label):
             for filename in files:
@@ -360,5 +334,108 @@ class blk_white():
             img = Image.fromarray(img)
             img.save(self.out+'/'+img_name)
 
-blk_white(out, path_label).convert_blk_white()
+
+
+
+#### Convert tif -> jpg 二值化 ####
+class type_change():
+    def __init__(self, path_label, path, out, out_y):
+        self.out = out
+        self.path_label = path_label
+        self.path = path
+        self.out_y = out_y
+        '''
+        address_list=[]
+        pattern=re.compile(r'.*.tif')
+        for home, dirs, files in os.walk(self.path):
+            for filename in files:
+                if pattern.findall(filename):
+                    address_list.append(os.path.join(home, filename))
+        self.address_list=address_list
+        '''
+
+        address_list_y=[]
+        pattern=re.compile(r'.*.tif')
+        for home, dirs, files in os.walk(self.path_label):
+            for filename in files:
+                if pattern.findall(filename):
+                    address_list_y.append(os.path.join(home, filename))
+
+        self.address_list_y = address_list_y
+
+
+    def convert_type(self):
+        
+        for image in self.address_list_y:
+           # a, b = os.path.splitext(image)
+            img_name=image.split('/')[-1]            
+            img = cv2.imread(image, 0)  #这里选择-1，不进行转化
+            #img=Image.open(image)
+            #img = img.convert('1')
+            img = np.array(img)
+            ret, img = cv2.threshold(img, 2, 1, 0)
+            img = Image.fromarray(img, mode ='P')
+            img.save(self.out_y+'/'+img_name.split('.')[0]+".png")
+        '''
+        for image in self.address_list:
+           # a, b = os.path.splitext(image)
+            img_name=image.split('/')[-1]
+            img = cv2.imread(image,-1)  #这里选择-1，不进行转化
+            cv2.imwrite(self.out+'/'+img_name.split('.')[0]+".png", img)
+        '''
+
+
+
+
+#### Convert pixel  ####
+class size_change():
+    def __init__(self, path_label):
+        self.path_label = path_label
+
+        address_list_y=[]
+        pattern=re.compile(r'.*.png')
+        for home, dirs, files in os.walk(self.path_label):
+            for filename in files:
+                if pattern.findall(filename):
+                    address_list_y.append(os.path.join(home, filename))
+
+        self.address_list_y = address_list_y
+
+
+    def convert_type(self):
+        '''
+        Function: Convert pjg tif
+        '''
+        for image in self.address_list_y:
+            img_name=image.split('/')[-1]
+            #img = cv2.imread(image,0)
+            #img=io.imread(image)
+            img=Image.open(image)
+            img = np.array(img)
+            pdb.set_trace()
+            img =  img/255.0
+            img = Image.fromarray(img)
+            #if img.mode != 'RGB':
+                #img = img.convert('RGB')
+            #img.save(self.path_label+'/'+img_name)
+            cv2.imwrite(self.path_label+'/'+img_name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
