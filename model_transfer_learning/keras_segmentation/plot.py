@@ -12,9 +12,8 @@ import pdb
 def plot(history):
 
     print('Start Plot')
-    pdb.set_trace()
-    predcision = history.history["precision"]
-    val_predcision = history.history["val_predcision"]
+    precision = history.history["precision"]
+    val_precision = history.history["val_precision"]
     recall = history.history["recall"]
     val_recall = history.history["val_recall"]
     MeanIoU = history.history["mean_io_u"]

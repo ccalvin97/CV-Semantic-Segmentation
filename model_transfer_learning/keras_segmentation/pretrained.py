@@ -45,11 +45,12 @@ def pspnet_101_cityscapes():
         "n_classes": 19,
         "model_class": "pspnet_101",
     }
-
+    '''
     model_url = "https://www.dropbox.com/s/" \
                 "c17g94n946tpalb/pspnet101_cityscapes.h5?dl=1"
     latest_weights = keras.utils.get_file("pspnet101_cityscapes.h5", model_url)
-
+    '''
+    latest_weights='/home/GDDC-CV1/.keras/datasets/pspnet101_cityscapes.h5'
     return model_from_checkpoint_path(model_config, latest_weights)
 
 

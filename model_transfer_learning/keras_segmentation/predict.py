@@ -226,3 +226,38 @@ def evaluate(model=None, inp_images=None, annotations=None,
         "mean_IU": mean_IU,
         "class_wise_IU": cl_wise_score
     }
+
+
+
+def visualize_segmentation(seg_arr, inp_img=None, n_classes=None,
+                           colors=class_colors, class_names=None,
+                           overlay_img=False, show_legends=False,
+                           prediction_width=None, prediction_height=None):
+
+    if n_classes is None:
+        n_classes = np.max(seg_arr)
+
+    seg_img = get_colored_segmentation_image(seg_arr, n_classes, colors=colors)
+
+    if inp_img is not None:
+        original_h = inp_img.shape[0]
+        original_w = inp_img.shape[1]
+        seg_img = cv2.resize(seg_img, (original_w, original_h), interpolation=cv2.INTER_NEAREST)
+
+    if (prediction_height is not None) and (prediction_width is not None):
+        seg_img = cv2.resize(seg_img, (prediction_width, prediction_height), interpolation=cv2.INTER_NEAREST)
+        if inp_img is not None:
+            inp_img = cv2.resize(inp_img,
+                                 (prediction_width, prediction_height))
+
+    if overlay_img:
+        assert inp_img is not None
+        seg_img = overlay_seg_image(inp_img, seg_img)
+
+    if show_legends:
+        assert class_names is not None
+        legend_img = get_legends(class_names, colors=colors)
+
+        seg_img = concat_lenends(seg_img, legend_img)
+
+    return seg_img
