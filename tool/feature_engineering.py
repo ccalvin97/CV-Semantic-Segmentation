@@ -381,12 +381,12 @@ class type_change():
             ret, img = cv2.threshold(img, 2, 1, 0)
             img = Image.fromarray(img, mode ='P')
             img.save(self.out_y+'/'+img_name.split('.')[0]+".png")
-        
+        '''
         for image in self.address_list:
             img_name=image.split('/')[-1]
             img = cv2.imread(image,-1)  #这里选择-1，不进行转化
             cv2.imwrite(self.out+'/'+img_name.split('.')[0]+".png", img)
-        
+        '''
 
 
 
@@ -430,18 +430,19 @@ class fill_transform():
 
 #### Convert pic type  ####
 class type_change_one():
-    def __init__(self ,path, out, pic_type, pic_type_out):
+    def __init__(self ,path, out, pic_type, pic_type_out, binary_pic):
         self.path = path
         self.out = out
         self.pic_type = pic_type
         self.pic_type_out = pic_type_out
+        self.binary_pic = binary_pic
         '''
         out: output x dir
         path: input x dir
         path_label: dir y dir
         out_y: dir
         pic_type: str, picture type, ex: 'tif'
-
+        binary_pic: str, yes-> 二值圖, no->正常
         '''
         address_list=[]
         pattern=re.compile(r'.*.'+self.pic_type)
@@ -457,7 +458,14 @@ class type_change_one():
         for image in self.address_list:
             img_name=image.split('/')[-1]
             img = cv2.imread(image,-1)  #这里选择-1，不进行转化
-            cv2.imwrite(self.out+'/'+img_name.split('.')[0]+"."+self.pic_type_out, img)
+
+            if self.binary_pic == 'yes':
+                img = np.array(img)
+                ret, img = cv2.threshold(img, 2, 1, 0)
+                img = Image.fromarray(img, mode ='P')
+                img.save(self.out+'/'+img_name.split('.')[0]+"."+self.pic_type_out)
+            else:
+                cv2.imwrite(self.out+'/'+img_name.split('.')[0]+"."+self.pic_type_out, img)
 
 
 

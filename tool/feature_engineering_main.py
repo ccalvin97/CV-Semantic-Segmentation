@@ -16,16 +16,16 @@ path_label = data dir for train_y or val_y
 out_x: val x dir
 out_y: val y dir
 '''
-path = '/home/GDDC-CV1/Desktop/data_1024/val_y'
+path = '/home/GDDC-CV1/Desktop/data_1024/val_y_png'
 #path_label='/home/GDDC-CV1/Desktop/data_1024/train_y'
 #out_x='/home/GDDC-CV1/Desktop/data_512/val_x'
 #out_y='/home/GDDC-CV1/Desktop/data_512/val_y'
-out = '/home/GDDC-CV1/Desktop/data_1024/val_y_png'
+out = '/home/GDDC-CV1/Desktop/data_1024/new'
 #out_y='/home/GDDC-CV1/Desktop/data_1024/train_y_png'
 ratio=0.3
-pic_type='tif'
+pic_type='png'
 pic_type_out='png'
-
+binary_pic='yes'
 
 
 #data_train_val_split(path, path_label, out_x, out_y)
@@ -43,7 +43,7 @@ pic_type_out='png'
 #size_change(path_label).convert_type()
 #type_change(path_label, path, out, out_y, 'tif').convert_type()
 #fill_transform(path, out, 1024, 'jpeg').convert_type()
-type_change_one(path, out, pic_type, pic_type_out).convert_type()
+type_change_one(path, out, pic_type, pic_type_out, binary_pic).convert_type()
 
 
 
