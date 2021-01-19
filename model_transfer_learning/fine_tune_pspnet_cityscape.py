@@ -7,9 +7,11 @@ from keras_segmentation.models.model_utils import transfer_weights
 from keras_segmentation.pretrained import  resnet_pspnet_VOC12_v0_1, pspnet_101_cityscapes
 from keras_segmentation.models.pspnet import resnet50_pspnet, pspnet_101
 import pdb
+from tensorflow.keras.optimizers import Adam
+
 
 #### local path
-epoch=30
+epoch=20
 checkpoints_path='/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/model_transfer_learning/checkpoint/pspnet_weight'
 batch_size=4
 validate=True
@@ -28,7 +30,8 @@ steps_per_epoch=512
 val_steps_per_epoch=512
 gen_use_multiprocessing=False
 ignore_zero_class=False
-optimizer_name='adam'
+lr=0.0001
+optimizer_name=Adam(lr=lr, decay=1e-6)
 do_augment=False
 augmentation_name="aug_all"
 pred_dir='/home/GDDC-CV1/Desktop/data_1024/pred_x_presentation/'
@@ -50,7 +53,8 @@ new_model.train(
     val_images=val_images,
     val_annotations=val_annotations,
     val_batch_size=batch_size,
-    auto_resume_checkpoint=auto_resume_checkpoint
+    auto_resume_checkpoint=auto_resume_checkpoint,
+    optimizer_name = optimizer_name
 )
 
 out = new_model.predict_multiple(
