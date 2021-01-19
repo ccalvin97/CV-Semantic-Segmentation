@@ -11,7 +11,7 @@ from tensorflow.keras.optimizers import Adam
 
 
 #### local path
-epoch=20
+epoch=50
 checkpoints_path='/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/model_transfer_learning/checkpoint/pspnet_weight'
 batch_size=4
 validate=True
@@ -30,13 +30,13 @@ steps_per_epoch=512
 val_steps_per_epoch=512
 gen_use_multiprocessing=False
 ignore_zero_class=False
-lr=0.0001
+lr=0.00001
 optimizer_name=Adam(lr=lr, decay=1e-6)
 do_augment=False
 augmentation_name="aug_all"
 pred_dir='/home/GDDC-CV1/Desktop/data_1024/pred_x_presentation/'
 out_dir='/home/GDDC-CV1/Desktop/pred_out/'
-
+patience=10
 
 #### physical GPU (device: 0, name: Tesla V100-PCIE-16GB, pci bus id: f114:00:00.0, compute capability: 7.0) ####
 pretrained_model = pspnet_101_cityscapes()
@@ -54,7 +54,8 @@ new_model.train(
     val_annotations=val_annotations,
     val_batch_size=batch_size,
     auto_resume_checkpoint=auto_resume_checkpoint,
-    optimizer_name = optimizer_name
+    optimizer_name = optimizer_name,
+    patience = patience
 )
 
 out = new_model.predict_multiple(
