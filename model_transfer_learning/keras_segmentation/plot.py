@@ -12,10 +12,11 @@ import pdb
 def plot(history):
 
     print('Start Plot')
-    precision = history.history["precision"]
-    val_precision = history.history["val_precision"]
-    recall = history.history["recall"]
-    val_recall = history.history["val_recall"]
+    pdb.set_trace()
+    tp_rate = history.history["tp_rate"]
+    val_tp_rate = history.history["val_tp_rate"]
+    tn_rate = history.history["tn_rate"]
+    val_tn_rate = history.history["val_tn_rate"]
     MeanIoU = history.history["mean_io_u"]
     val_MeanIoU = history.history["val_mean_io_u"]
     dice_coef = history.history['dice_coef']
@@ -27,10 +28,10 @@ def plot(history):
     plt.style.use('ggplot')
 
     plt.figure()
-    plt.plot(epochs, precision, color="yellow", label="precision")
-    plt.plot(epochs, val_precision, color="orange", label="val precision")
-    plt.plot(epochs, precision, color="black", label="recall")
-    plt.plot(epochs, val_precision, color="gray", label="val recall")
+    plt.plot(epochs, tp_rate, color="yellow", label="tp_rate")
+    plt.plot(epochs, val_tp_rate, color="orange", label="val tp_rate")
+    plt.plot(epochs, tn_rate, color="black", label="tn_rate")
+    plt.plot(epochs, val_tn_rate, color="gray", label="val tn_rate")
     plt.plot(epochs, MeanIoU, color="red", label="train MeanIoU")
     plt.plot(epochs, val_MeanIoU, color="darkred", label="val MeanIoU")
     plt.plot(epochs, dice_coef, color="blue", label="train dice coef")
@@ -38,6 +39,18 @@ def plot(history):
     plt.plot(epochs, loss_bacc, color="green", label="train binary acc")
     plt.plot(epochs, val_bacc, color="lightgreen", label="val binary acc")
     plt.title("Training and validation")
+    plt.xlabel('Epoch')
+    plt.legend()
+    plt.show()
+    plt.savefig("training_plot.png")
+
+    loss = history.history["loss"]
+    val_loss = history.history["val_loss"]
+    plt.figure()
+    plt.plot(epochs, loss, color="green", label="loss")
+    plt.plot(epochs, val_loss, color="lightgreen", label="val loss")
+    plt.title("Training and validation")
+    plt.xlabel('Epoch')
     plt.legend()
     plt.show()
     plt.savefig("training_plot.png")

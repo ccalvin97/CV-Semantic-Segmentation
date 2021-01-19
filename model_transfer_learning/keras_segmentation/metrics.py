@@ -48,6 +48,22 @@ def focal_loss(gamma=2., alpha=.25):
 def binary_accuracy( y_true, y_pred):
     return K.mean(K.equal(y_true, K.round(y_pred)), axis=-1)
 
-def true_positive_rate(self, y_true, y_pred):
+def tp_rate(y_true, y_pred):
     return K.sum(K.flatten(y_true)*K.flatten(K.round(y_pred)))/K.sum(y_true)
+
+def tn_rate(y_true, y_pred):
+    """
+    param:
+    y_pred - Predicted labels
+    y_true - True labels 
+    Returns:
+    Specificity score
+    """
+    neg_y_true = 1 - y_true
+    neg_y_pred = 1 - y_pred
+    fp = K.sum(neg_y_true * y_pred)
+    tn = K.sum(neg_y_true * neg_y_pred)
+    specificity = tn / (tn + fp + K.epsilon())
+    return specificity
+
 
