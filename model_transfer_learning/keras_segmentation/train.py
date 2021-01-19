@@ -8,6 +8,7 @@ from tensorflow.keras.losses import binary_crossentropy
 from tensorflow.keras.metrics import MeanIoU, Precision, Recall
 import keras_segmentation.metrics as metrics
 import keras_segmentation.plot as plot
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 def find_latest_checkpoint(checkpoints_path, fail_safe=True):
 
@@ -73,7 +74,9 @@ def train(model,
           ignore_zero_class=False,
           optimizer_name='adam',
           do_augment=False,
-          augmentation_name="aug_all"):
+          augmentation_name="aug_all", 
+          patience=10
+          ):
 
     from .models.all_models import model_from_name
     # check if user gives model name instead of the model object
@@ -152,7 +155,9 @@ def train(model,
             val_images, val_annotations,  val_batch_size,
             n_classes, input_height, input_width, output_height, output_width)
 
+    early_stop = EarlyStopping(monitor="val_loss", patience=patience, verbose=1)
     callbacks = [
+        early_stop,
         CheckpointsCallback(checkpoints_path)
     ]
 
