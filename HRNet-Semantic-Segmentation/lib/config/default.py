@@ -16,10 +16,10 @@ from yacs.config import CfgNode as CN
 
 _C = CN()
 
-_C.OUTPUT_DIR = ''
-_C.LOG_DIR = ''
+_C.OUTPUT_DIR = '' ## output dir
+_C.LOG_DIR = ''  ## log file dir
 _C.GPUS = (0,)
-_C.WORKERS = 4
+_C.WORKERS = 1  ## workers for distributed system
 _C.PRINT_FREQ = 20
 _C.AUTO_RESUME = False
 _C.PIN_MEMORY = True
@@ -34,7 +34,7 @@ _C.CUDNN.ENABLED = True
 # common params for NETWORK
 _C.MODEL = CN()
 _C.MODEL.NAME = 'seg_hrnet'
-_C.MODEL.PRETRAINED = ''
+_C.MODEL.PRETRAINED = '' ## pre-train weight absolute address
 _C.MODEL.EXTRA = CN(new_allowed=True)
 
 _C.LOSS = CN()
@@ -69,7 +69,7 @@ _C.TRAIN.EXTRA_LR = 0.001
 
 _C.TRAIN.OPTIMIZER = 'sgd'
 _C.TRAIN.MOMENTUM = 0.9
-_C.TRAIN.WD = 0.0001
+_C.TRAIN.WD = 0.0001 ## weight decay rate
 _C.TRAIN.NESTEROV = False
 _C.TRAIN.IGNORE_LABEL = -1
 
