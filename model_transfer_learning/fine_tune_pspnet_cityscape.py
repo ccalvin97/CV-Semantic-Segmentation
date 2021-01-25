@@ -11,11 +11,7 @@ from tensorflow.keras.optimizers import Adam
 
 
 #### local path
-<<<<<<< HEAD
-epoch=2
-=======
 epoch=20
->>>>>>> b3e5f5edc11d62e581b8bc2960704e89fb1c1cf1
 checkpoints_path='/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/model_transfer_learning/checkpoint/pspnet_weight'
 batch_size=4
 validate=True
