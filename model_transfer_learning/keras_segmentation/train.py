@@ -55,6 +55,7 @@ class CheckpointsCallback(Callback):
 def train(model,
           train_images,
           train_annotations,
+          optimizer_name,
           input_height=None,
           input_width=None,
           n_classes=None,
@@ -72,7 +73,6 @@ def train(model,
           val_steps_per_epoch=512,
           gen_use_multiprocessing=False,
           ignore_zero_class=False,
-          optimizer_name='adam',
           do_augment=False,
           augmentation_name="aug_all", 
           patience=10
@@ -108,7 +108,7 @@ def train(model,
 
         model.compile(loss=loss_k,
                       optimizer=optimizer_name,
-                      metrics=['accuracy', metrics.dice_coef, MeanIoU(num_classes=2), Recall(),Precision() ])
+                      metrics=['accuracy', metrics.dice_coef, MeanIoU(num_classes=2), metrics.tp_rate, metrics.tn_rate ])
 
     if checkpoints_path is not None:
         with open(checkpoints_path+"_config.json", "w") as f:
