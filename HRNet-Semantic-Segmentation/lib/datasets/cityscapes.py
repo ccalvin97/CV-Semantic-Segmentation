@@ -15,6 +15,20 @@ from torch.nn import functional as F
 
 from .base_dataset import BaseDataset
 
+'''
+root=config.DATASET.ROOT,
+                        list_path=config.DATASET.TRAIN_SET, - data list file
+                        num_samples=None, 如果全部样本数是10000对，但是我只想把之中的前200对样本用于训练，则可以通过变量num_samples实现
+                        num_classes=config.DATASET.NUM_CLASSES, - N class for output
+                        multi_scale=config.TRAIN.MULTI_SCALE, 
+                        flip=config.TRAIN.FLIP,
+                        ignore_label=config.TRAIN.IGNORE_LABEL,
+                        base_size=config.TRAIN.BASE_SIZE,
+                        crop_size=crop_size,
+                        downsample_rate=config.TRAIN.DOWNSAMPLERATE,
+                        scale_factor=config.TRAIN.SCALE_FACTOR
+'''
+
 class Cityscapes(BaseDataset):
     def __init__(self, 
                  root, 
@@ -43,7 +57,7 @@ class Cityscapes(BaseDataset):
         
         self.img_list = [line.strip().split() for line in open(root+list_path)]
 
-        self.files = self.read_files() ## 這行在跑line 68 finction
+        self.files = self.read_files() ## 這行在跑line 82 finction
         if num_samples:
             self.files = self.files[:num_samples]
 
