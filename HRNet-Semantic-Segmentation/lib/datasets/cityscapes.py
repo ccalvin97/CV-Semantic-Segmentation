@@ -18,15 +18,15 @@ from .base_dataset import BaseDataset
 '''
 root=config.DATASET.ROOT,
                         list_path=config.DATASET.TRAIN_SET, - data list file
-                        num_samples=None, 如果全部样本数是10000对，但是我只想把之中的前200对样本用于训练，则可以通过变量num_samples实现
+                        num_samples=None, ## 如果全部样本数是10000对，但是我只想把之中的前200对样本用于训练，则可以通过变量num_samples实现
                         num_classes=config.DATASET.NUM_CLASSES, - N class for output
-                        multi_scale=config.TRAIN.MULTI_SCALE, 
-                        flip=config.TRAIN.FLIP,
+                        multi_scale=config.TRAIN.MULTI_SCALE,  ## multi_scale=True -> 做data aug 放大縮小
+                        flip=config.TRAIN.FLIP, ## 图像向右翻转180°
                         ignore_label=config.TRAIN.IGNORE_LABEL,
                         base_size=config.TRAIN.BASE_SIZE,
-                        crop_size=crop_size,
+                        crop_size=crop_size, # 最後裁減大小, 應該要跟你data相同大小, 意義是讓data aug之後data恢復同等大小
                         downsample_rate=config.TRAIN.DOWNSAMPLERATE,
-                        scale_factor=config.TRAIN.SCALE_FACTOR
+                        scale_factor=config.TRAIN.SCALE_FACTOR # 放縮比例係數
 '''
 
 class Cityscapes(BaseDataset):
@@ -60,7 +60,7 @@ class Cityscapes(BaseDataset):
         self.files = self.read_files() ## 這行在跑line 82 finction
         if num_samples:
             self.files = self.files[:num_samples]
-
+        ## 這邊mapping 用途是原始datd灰度圖為0-33, 但example只有19類, 所以有些label不要
         self.label_mapping = {-1: ignore_label, 0: ignore_label, 
                               1: ignore_label, 2: ignore_label, 
                               3: ignore_label, 4: ignore_label, 
@@ -119,7 +119,7 @@ class Cityscapes(BaseDataset):
         size = image.shape
 
         if 'test' in self.list_path:
-            image = self.input_transform(image)
+            image = self.input_transform(image) ## from lib/datasets/base_dataset.py  標準化data
             image = image.transpose((2, 0, 1))
 
             return image.copy(), np.array(size), name
@@ -129,7 +129,7 @@ class Cityscapes(BaseDataset):
         label = self.convert_label(label)
 
         image, label = self.gen_sample(image, label, 
-                                self.multi_scale, self.flip)
+                                self.multi_scale, self.flip) ## from function in lib/datasets/base_dataset.py
 
         return image.copy(), label.copy(), np.array(size), name
 
