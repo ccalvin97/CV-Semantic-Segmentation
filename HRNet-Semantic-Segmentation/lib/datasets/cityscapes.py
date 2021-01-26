@@ -43,7 +43,7 @@ class Cityscapes(BaseDataset):
         
         self.img_list = [line.strip().split() for line in open(root+list_path)]
 
-        self.files = self.read_files()
+        self.files = self.read_files() ## 這行在跑line 68 finction
         if num_samples:
             self.files = self.files[:num_samples]
 
@@ -67,7 +67,7 @@ class Cityscapes(BaseDataset):
     
     def read_files(self):
         files = []
-        if 'test' in self.list_path:
+        if 'test' in self.list_path:  ## self.list_path ex: 'list/cityscapes/train.lst'
             for item in self.img_list:
                 image_path = item
                 name = os.path.splitext(os.path.basename(image_path[0]))[0]
