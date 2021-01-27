@@ -1,9 +1,3 @@
-# ------------------------------------------------------------------------------
-# Copyright (c) Microsoft
-# Licensed under the MIT License.
-# Written by Ke Sun (sunk@mail.ustc.edu.cn)
-# ------------------------------------------------------------------------------
-
 import os
 
 import cv2
@@ -23,7 +17,7 @@ root=config.DATASET.ROOT,
                         multi_scale=config.TRAIN.MULTI_SCALE,  ## multi_scale=True -> 做data aug 放大縮小
                         flip=config.TRAIN.FLIP, ## 图像向右翻转180°
                         ignore_label=config.TRAIN.IGNORE_LABEL,
-                        base_size=config.TRAIN.BASE_SIZE,
+                        base_size=config.TRAIN.BASE_SIZE,  ## base_size - multi aug 最大的size
                         crop_size=crop_size, # 最後裁減大小, 應該要跟你data相同大小, 意義是讓data aug之後data恢復同等大小
                         downsample_rate=config.TRAIN.DOWNSAMPLERATE,
                         scale_factor=config.TRAIN.SCALE_FACTOR # 放縮比例係數
@@ -34,12 +28,12 @@ class Cityscapes(BaseDataset):
                  root, 
                  list_path, 
                  num_samples=None, 
-                 num_classes=19,
+                 num_classes=2,
                  multi_scale=True, 
                  flip=True, 
                  ignore_label=-1, 
                  base_size=2048, 
-                 crop_size=(512, 1024), 
+                 crop_size=(1024, 1024), 
                  downsample_rate=1,
                  scale_factor=16,
                  mean=[0.485, 0.456, 0.406], 
@@ -61,23 +55,8 @@ class Cityscapes(BaseDataset):
         if num_samples:
             self.files = self.files[:num_samples]
         ## 這邊mapping 用途是原始datd灰度圖為0-33, 但example只有19類, 所以有些label不要
-        self.label_mapping = {-1: ignore_label, 0: ignore_label, 
-                              1: ignore_label, 2: ignore_label, 
-                              3: ignore_label, 4: ignore_label, 
-                              5: ignore_label, 6: ignore_label, 
-                              7: 0, 8: 1, 9: ignore_label, 
-                              10: ignore_label, 11: 2, 12: 3, 
-                              13: 4, 14: ignore_label, 15: ignore_label, 
-                              16: ignore_label, 17: 5, 18: ignore_label, 
-                              19: 6, 20: 7, 21: 8, 22: 9, 23: 10, 24: 11,
-                              25: 12, 26: 13, 27: 14, 28: 15, 
-                              29: ignore_label, 30: ignore_label, 
-                              31: 16, 32: 17, 33: 18}
-        self.class_weights = torch.FloatTensor([0.8373, 0.918, 0.866, 1.0345, 
-                                        1.0166, 0.9969, 0.9754, 1.0489,
-                                        0.8786, 1.0023, 0.9539, 0.9843, 
-                                        1.1116, 0.9037, 1.0865, 1.0955, 
-                                        1.0865, 1.1529, 1.0507]).cuda()
+        self.label_mapping = {0:0, 1:1}
+        self.class_weights = torch.FloatTensor([1,1]).cuda()
     
     def read_files(self):
         files = []
