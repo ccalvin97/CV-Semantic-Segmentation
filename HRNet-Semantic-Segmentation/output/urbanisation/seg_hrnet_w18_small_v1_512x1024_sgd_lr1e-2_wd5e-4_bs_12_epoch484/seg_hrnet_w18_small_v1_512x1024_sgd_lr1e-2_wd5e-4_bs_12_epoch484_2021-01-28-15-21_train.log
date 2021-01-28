@@ -1,5 +1,5 @@
-2021-01-28 09:13:44,786 Namespace(cfg='/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/HRNet-Semantic-Segmentation/experiments/seg_hrnet_w18_small_v1_512x1024_sgd_lr1e-2_wd5e-4_bs_12_epoch484.yaml', opts=[])
-2021-01-28 09:13:44,786 AUTO_RESUME: False
+2021-01-28 15:21:26,112 Namespace(cfg='/home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/HRNet-Semantic-Segmentation/experiments/seg_hrnet_w18_small_v1_512x1024_sgd_lr1e-2_wd5e-4_bs_12_epoch484.yaml', opts=[])
+2021-01-28 15:21:26,113 AUTO_RESUME: False
 CUDNN:
   BENCHMARK: True
   DETERMINISTIC: False
@@ -59,7 +59,7 @@ MODEL:
   PRETRAINED: /home/GDDC-CV1/Desktop/hrnet_w18_small_v1_cityscapes_cls19_1024x2048_trainset.pth
 OUTPUT_DIR: output
 PIN_MEMORY: True
-PRINT_FREQ: 10
+PRINT_FREQ: 100
 RANK: 0
 TEST:
   BASE_SIZE: 2048
@@ -75,7 +75,7 @@ TRAIN:
   BATCH_SIZE_PER_GPU: 3
   BEGIN_EPOCH: 0
   DOWNSAMPLERATE: 1
-  END_EPOCH: 3
+  END_EPOCH: 5
   EXTRA_EPOCH: 0
   EXTRA_LR: 0.001
   FLIP: True
@@ -94,12 +94,18 @@ TRAIN:
   SHUFFLE: True
   WD: 0.0005
 WORKERS: 1
-2021-01-28 09:13:44,819 => init weights from normal distribution
-2021-01-28 09:13:47,067 => loading pretrained model /home/GDDC-CV1/Desktop/hrnet_w18_small_v1_cityscapes_cls19_1024x2048_trainset.pth
-2021-01-28 09:13:47,505 
+2021-01-28 15:21:26,221 => init weights from normal distribution
+2021-01-28 15:21:36,850 => loading pretrained model /home/GDDC-CV1/Desktop/hrnet_w18_small_v1_cityscapes_cls19_1024x2048_trainset.pth
+2021-01-28 15:21:38,079 
 Total Parameters: 1,529,490
 ----------------------------------------------------------------------------------------------------------------------------------
 Total Multiply Adds (For Convolution and Linear Layers only): 15.2998046875 GFLOPs
 ----------------------------------------------------------------------------------------------------------------------------------
 Number of Layers
 Conv2d : 73 layers   InPlaceABNSync : 72 layers   ReLU : 60 layers   Bottleneck : 1 layers   BasicBlock : 18 layers   HighResolutionModule : 3 layers   
+2021-01-28 15:21:40,439 Epoch: [0/5] Iter:[0/1479], Time: 2.30, lr: 0.010000, Loss: 0.682955
+2021-01-28 15:22:26,122 Epoch: [0/5] Iter:[100/1479], Time: 0.47, lr: 0.009878, Loss: 0.425308
+2021-01-28 15:23:13,151 Epoch: [0/5] Iter:[200/1479], Time: 0.47, lr: 0.009756, Loss: 0.403847
+2021-01-28 15:23:59,751 Epoch: [0/5] Iter:[300/1479], Time: 0.47, lr: 0.009634, Loss: 0.395031
+2021-01-28 15:24:46,140 Epoch: [0/5] Iter:[400/1479], Time: 0.47, lr: 0.009512, Loss: 0.391448
+2021-01-28 15:25:32,063 Epoch: [0/5] Iter:[500/1479], Time: 0.47, lr: 0.009389, Loss: 0.384333
