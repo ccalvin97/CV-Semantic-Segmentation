@@ -1,7 +1,7 @@
-# High-resolution networks (HRNets) for Semantic Segmentation  
+# High-resolution networks (HRNets) for Semantic Segmentation in Urbanisation Task   
 
 ## Contribution  
-kuancalvin2016@gmail.com  
+Edited by kuancalvin2016@gmail.com  
 Original Code from HRNet Official Github  
 
 ## Introduction
@@ -28,9 +28,9 @@ Performance on the Cityscapes dataset. The models are trained and tested with th
 
 ## Quick start
 ### Install
-1. Instal torch==l0.4.1.post2 
-2. git clone https://github.com/HRNet/HRNet-Semantic-Segmentation $SEG_ROOT
-3. Install dependencies: pip install -r requirements.txt
+1. Instal torch==0.4.1.post2 
+2. git clone https://github.com/HRNet/HRNet-Semantic-Segmentation $SEG_ROOT  
+3. Install dependencies: pip install -r requirements.txt  
 
 ## Environment in Azure   
 conda environment - py37_pytorch  
