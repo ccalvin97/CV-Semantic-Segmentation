@@ -34,6 +34,9 @@ Performance on the Cityscapes dataset. The models are trained and tested with th
 
 ## Environment in Azure   
 conda environment - py37_pytorch  
+torch - 0.4.1.post2  
+CUDNN - 7.6.5  
+CUDA - 10.1.243  
 numpy - 1.19.2  
 opencv-python - 4.5.1.48   
 tensorboardX - 2.1  
