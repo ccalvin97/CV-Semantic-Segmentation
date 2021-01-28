@@ -33,6 +33,7 @@ Performance on the Cityscapes dataset. The models are trained and tested with th
 3. Install dependencies: pip install -r requirements.txt  
 
 ## Environment in Azure   
+Computer - Standard NC6s_v3   
 conda environment - py37_pytorch  
 torch - 0.4.1.post2  
 CUDNN - 7.6.5  
