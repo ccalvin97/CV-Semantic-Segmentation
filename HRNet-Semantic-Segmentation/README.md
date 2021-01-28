@@ -1,18 +1,8 @@
-# High-resolution networks (HRNets) for Semantic Segmentation
+# High-resolution networks (HRNets) for Semantic Segmentation  
 
-## Branches
-- This is the implementation for PyTroch 0.4.1.
-- The HRNet + OCR version ia available [here](https://github.com/HRNet/HRNet-Semantic-Segmentation/tree/HRNet-OCR).
-- The PyTroch 1.1 version is available [here](https://github.com/HRNet/HRNet-Semantic-Segmentation/tree/pytorch-v1.1).
-
-## News
-- [2020/03/13] Our paper is accepted by TPAMI: [Deep High-Resolution Representation Learning for Visual Recognition](https://arxiv.org/pdf/1908.07919.pdf).
-- HRNet + OCR + SegFix: Rank \#1 (84.5) in [Cityscapes leaderboard](https://www.cityscapes-dataset.com/benchmarks/). OCR: object contextual representations [pdf](https://arxiv.org/pdf/1909.11065.pdf). ***HRNet + OCR is reproduced [here](https://github.com/HRNet/HRNet-Semantic-Segmentation/tree/HRNet-OCR)***.
-- Thanks Google and UIUC researchers. A modified HRNet combined with semantic and instance multi-scale context achieves SOTA panoptic segmentation result on the Mapillary Vista challenge. See [the paper](https://arxiv.org/pdf/1910.04751.pdf).
-- Small HRNet models for Cityscapes segmentation. Superior to MobileNetV2Plus ....
-- Rank \#1 (83.7) in [Cityscapes leaderboard](https://www.cityscapes-dataset.com/benchmarks/). HRNet combined with an extension of [object context](https://arxiv.org/pdf/1809.00916.pdf)
-
-- Pytorch-v1.1 and the official Sync-BN supported. We have reproduced the cityscapes results on the new codebase. Please check the [pytorch-v1.1 branch](https://github.com/HRNet/HRNet-Semantic-Segmentation/tree/pytorch-v1.1).
+## Contribution  
+kuancalvin2016@gmail.com  
+Original Code from HRNet Official Github  
 
 ## Introduction
 This is the official code of [high-resolution representations for Semantic Segmentation](https://arxiv.org/abs/1904.04514). 
@@ -25,34 +15,6 @@ HRNetV2 Segmentation models are now available. All the results are reproduced by
 
 The models are initialized by the weights pretrained on the ImageNet. You can download the pretrained models from  https://github.com/HRNet/HRNet-Image-Classification.
 
-### Big models
-
-1. Performance on the Cityscapes dataset. The models are trained and tested with the input size of 512x1024 and 1024x2048 respectively.
-If multi-scale testing is used, we adopt scales: 0.5,0.75,1.0,1.25,1.5,1.75.
-
-| model | Train Set | Test Set |#Params | GFLOPs | OHEM | Multi-scale| Flip | mIoU | Link |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| HRNetV2-W48 | Train | Val | 65.8M | 696.2 | No | No | No | 80.9 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33fs5grbbxDe5rh0E?e=FK8YqK)/[BaiduYun(Access Code:tj7a)](https://pan.baidu.com/s/13ha3aMQY-f_qzjJEkrodOQ)|
-| HRNetV2-W48 | Train | Val |65.8M | 696.2 | Yes | No | No | 81.2 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQJqzjdjG_zBfQG8)/[BaiduYun(Access Code:794r)](https://pan.baidu.com/s/1BOOLKeQVde3MTeKAM_H5Nw)|
-| HRNetV2-W48 | Train | Test | 65.8M | 696.2 | No | Yes | Yes | [80.5](https://www.cityscapes-dataset.com/anonymous-results/?id=5929dc821f480d298646572d5a5c1ab0206b94347a720d3d0e0efefa5b3c5026) | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33fs5grbbxDe5rh0E?e=FK8YqK)/[BaiduYun(Access Code:tj7a)](https://pan.baidu.com/s/13ha3aMQY-f_qzjJEkrodOQ)|
-| HRNetV2-W48 | Train | Test |65.8M | 696.2 | Yes | Yes | Yes | [81.1](https://www.cityscapes-dataset.com/anonymous-results/?id=7c9d053cff143a4293fec6edea4fb7eb8c0cbe98d3e0dc62e2b1a89949bc4307) | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQJqzjdjG_zBfQG8)/[BaiduYun(Access Code:794r)](https://pan.baidu.com/s/1BOOLKeQVde3MTeKAM_H5Nw)|
-| HRNetV2-W48 | TrainVal | Test |65.8M | 696.2 | No | Yes | Yes | [81.5](https://www.cityscapes-dataset.com/anonymous-results/?id=860a48272386915f3f950916bde8fc3fabc4161985850b97942c1fd94eaa96bd) | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQUhU4Id4_nc1Vcx)/[BaiduYun(Access Code:pbai)](https://pan.baidu.com/s/1nlBVeGNszdl5c6kg8NVjiw)|
-| HRNetV2-W48 | TrainVal | Test |65.8M | 696.2 | Yes | Yes | Yes | [81.9](https://www.cityscapes-dataset.com/anonymous-results/?id=592db8db303bf97dc251419c7fa0d88846ca322d539c30228fc341ca6789c524) | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQMJK-zkWjK6V7gE)/[BaiduYun(Access Code:qett)](https://pan.baidu.com/s/1OVHLJ8LbySMYo2yn6ZEqAA)|
-
-2. Performance on the LIP dataset. The models are trained and tested with the input size of 473x473.
-
-| model |#Params | GFLOPs | OHEM | Multi-scale| Flip | mIoU | Link |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| HRNetV2-W48 | 65.8M | 74.3 | No | No | Yes | 56.04 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQBEDbyqhH5SMQld)/[BaiduYun(Access Code:mjw3)](https://pan.baidu.com/s/1vJD6R47MiVzn9r_VyC5t1g)|
-
-3. Performance on the PASCAL-Context dataset. The models are trained and tested with the input size of 480x480.
-If multi-scale testing is used, we adopt scales: 0.5,0.75,1.0,1.25,1.5,1.75,2.0 (the same as EncNet, DANet etc.).
-
-| model |num classes |#Params | GFLOPs | OHEM | Multi-scale| Flip | mIoU | Link |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| HRNetV2-W48 | 59 classes |65.8M | 76.5 | No | Yes | Yes | 54.1 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33f5Bfbt4KmLeX8uw)/[BaiduYun(Access Code:53fj)](https://pan.baidu.com/s/1h24CgCWpkxt2W6MonrM-dQ)|
-| HRNetV2-W48 | 60 classes | 65.8M | 76.5 | No | Yes | Yes | 48.3 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gQEHDQrZCiv4R5mf)/[BaiduYun(Access Code:9uf8)](https://pan.baidu.com/s/1pgYt8P8ht2HOOzcA0F7Kag)|
-
 ### Small models
 
 The models are initialized by the weights pretrained on the ImageNet. You can download the pretrained models from  https://github.com/HRNet/HRNet-Image-Classification.
@@ -61,32 +23,32 @@ Performance on the Cityscapes dataset. The models are trained and tested with th
 
 | model | Train Set | Test Set |#Params | GFLOPs | OHEM | Multi-scale| Flip | Distillation | mIoU | Link |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| SQ | Train | Val | - | - | No | No | No | No | 59.8 | |
-| CRF-RNN | Train | Val | - | - | No | No | No | No | 62.5 | |
-| Dilation10 | Train | Val | 140.8 | - | No | No | No | No | 67.1 | |
-| ICNet | Train | Val | - | - | No | No | No | No | 70.6 | |
-| ResNet18(1.0) | Train | Val | 15.2 | 477.6 | No | No | No | No | 69.1 | |
-| ResNet18(1.0) | Train | Val | 15.2 | 477.6 | No | No | No | Yes | 72.7 | |
-| MD(Enhanced) | Train | Val | 14.4 | 240.2 | No | No | No | No | 67.3 | |
-| MD(Enhanced) | Train | Val | 14.4 | 240.2 | No | No | No | Yes | 71.9 | |
-| MobileNetV2Plus | Train | Val | 8.3 | 320.9 | No | No | No | No | 70.1 | |
-| MobileNetV2Plus | Train | Val | 8.3 | 320.9 | No | No | No | Yes | 74.5 | |
 | HRNetV2-W18-Small-v1 | Train | Val | 1.5M | 31.1 | No | No | No | No | 70.3 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gSEsg-2sxTmZL2AT?e=AqHbjh)/[BaiduYun(Access Code:63be)](https://pan.baidu.com/s/17pr-he0HEBycHtUdfqWr3g)|
 | HRNetV2-W18-Small-v2 | Train | Val | 3.9M | 71.6 | No | No | No | No | 76.2 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gSAL4OurOW0RX4JH?e=ptLwpW)/[BaiduYun(Access Code:p1qf)](https://pan.baidu.com/s/1EHsZhqxWI0KF304Ptcj5-A)|
 
 ## Quick start
 ### Install
-1. Install PyTorch=0.4.1 following the [official instructions](https://pytorch.org/)
+1. Instal torch==l0.4.1.post2 
 2. git clone https://github.com/HRNet/HRNet-Semantic-Segmentation $SEG_ROOT
 3. Install dependencies: pip install -r requirements.txt
 
-If you want to train and evaluate our models on PASCAL-Context, you need to install [details](https://github.com/zhanghang1989/detail-api).
-````bash
-# PASCAL_CTX=/path/to/PASCAL-Context/
-git clone https://github.com/zhanghang1989/detail-api.git $PASCAL_CTX
-cd $PASCAL_CTX/PythonAPI
-python setup.py install
-````
+## Environment in Azure   
+conda environment - py37_pytorch  
+numpy - 1.19.2  
+opencv-python - 4.5.1.48   
+tensorboardX - 2.1  
+yacs - 0.1.8  
+tqdm - 4.50.2  
+ninja - 1.10.0.post2  
+scikit-image - 0.17.2  
+json_tricks - 3.15.5  
+PyYAML - 5.3.1    
+pandas - 1.1.3  
+scipy - 1.5.2  
+Cython - 0.29.21  
+Shapely - 1.7.1  
+easydict - 1.7  
+
 
 ### Data preparation
 You need to download the [Cityscapes](https://www.cityscapes-dataset.com/), [LIP](http://sysu-hcp.net/lip/) and [PASCAL-Context](https://cs.stanford.edu/~roozbeh/pascal-context/) datasets.
@@ -94,38 +56,20 @@ You need to download the [Cityscapes](https://www.cityscapes-dataset.com/), [LIP
 Your directory tree should be look like this:
 ````bash
 $SEG_ROOT/data
-├── cityscapes
-│   ├── gtFine
+├── urbanisation
+│   ├── y
 │   │   ├── test
 │   │   ├── train
 │   │   └── val
-│   └── leftImg8bit
+│   └── x
 │       ├── test
 │       ├── train
 │       └── val
-├── lip
-│   ├── TrainVal_images
-│   │   ├── train_images
-│   │   └── val_images
-│   └── TrainVal_parsing_annotations
-│       ├── train_segmentations
-│       ├── train_segmentations_reversed
-│       └── val_segmentations
-├── pascal_ctx
-│   ├── common
-│   ├── PythonAPI
-│   ├── res
-│   └── VOCdevkit
-│       └── VOC2010
 ├── list
-│   ├── cityscapes
+│   ├── urbanisation
 │   │   ├── test.lst
 │   │   ├── trainval.lst
 │   │   └── val.lst
-│   ├── lip
-│   │   ├── testvalList.txt
-│   │   ├── trainList.txt
-│   │   └── valList.txt
 ````
 
 ### Train and test
