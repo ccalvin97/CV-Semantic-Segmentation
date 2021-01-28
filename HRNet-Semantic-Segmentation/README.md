@@ -93,28 +93,7 @@ python tools/test.py --cfg experiments/cityscapes/seg_hrnet_w48_train_512x1024_s
                      TEST.SCALE_LIST 0.5,0.75,1.0,1.25,1.5,1.75 \
                      TEST.FLIP_TEST True
 ````
-Evaluating our model on the PASCAL-Context validation set with multi-scale and flip testing:
-````bash
-python tools/test.py --cfg experiments/pascal_ctx/seg_hrnet_w48_cls59_480x480_sgd_lr4e-3_wd1e-4_bs_16_epoch200.yaml \
-                     DATASET.TEST_SET testval \
-                     TEST.MODEL_FILE hrnet_w48_pascal_context_cls59_480x480.pth \
-                     TEST.SCALE_LIST 0.5,0.75,1.0,1.25,1.5,1.75,2.0 \
-                     TEST.FLIP_TEST True
-````
-Evaluating our model on the LIP validation set with flip testing:
-````bash
-python tools/test.py --cfg experiments/lip/seg_hrnet_w48_473x473_sgd_lr7e-3_wd5e-4_bs_40_epoch150.yaml \
-                     DATASET.TEST_SET list/lip/testvalList.txt \
-                     TEST.MODEL_FILE hrnet_w48_lip_cls20_473x473.pth \
-                     TEST.FLIP_TEST True \
-                     TEST.NUM_SAMPLES 0
-````
 
-## Other applications of HRNet
-* [Human pose estimation](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch)
-* [Image Classification](https://github.com/HRNet/HRNet-Image-Classification)
-* [Object detection](https://github.com/HRNet/HRNet-Object-Detection)
-* [Facial landmark detection](https://github.com/HRNet/HRNet-Facial-Landmark-Detection)
 
 ## Citation
 If you find this work or code is helpful in your research, please cite:
