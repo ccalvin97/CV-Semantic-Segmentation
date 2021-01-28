@@ -54,8 +54,6 @@ easydict - 1.7
 
 
 ### Data preparation
-You need to download the [Cityscapes](https://www.cityscapes-dataset.com/), [LIP](http://sysu-hcp.net/lip/) and [PASCAL-Context](https://cs.stanford.edu/~roozbeh/pascal-context/) datasets.
-
 Your directory tree should be look like this:
 ````bash
 $SEG_ROOT/data
@@ -78,10 +76,7 @@ $SEG_ROOT/data
 ### Train and test
 Please specify the configuration file.
 
-For example, train the HRNet-W48 on Cityscapes with a batch size of 12 on 4 GPUs:
-````bash
-python tools/train.py --cfg experiments/cityscapes/seg_hrnet_w48_train_512x1024_sgd_lr1e-2_wd5e-4_bs_12_epoch484.yaml
-````
+Train - bash start.sh  
 
 For example, evaluating our model on the Cityscapes validation set with multi-scale and flip testing:
 ````bash
