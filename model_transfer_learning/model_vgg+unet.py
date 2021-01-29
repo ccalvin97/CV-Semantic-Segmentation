@@ -8,7 +8,7 @@ import tensorflow.keras.backend as K
 from tensorflow.keras.models import save_model
 
 #### local path
-epoch=200
+epoch=2
 checkpoints_path='/home/GDDC-CV2/Desktop/CV-Semantic-Segmentation/model_transfer_learning/checkpoint/unet_weight'
 batch_size=4
 validate=True
