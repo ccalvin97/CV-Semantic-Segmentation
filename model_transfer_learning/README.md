@@ -1,4 +1,4 @@
-# Image Segmentation Keras : Implementation of UNet, PSPNet.
+# Image Segmentation Keras : UNet, PSPNet.
 
 ## Contribution   
 kuancalvin2016@gmail.com
@@ -16,6 +16,34 @@ Following models are supported and tested:
 
 ## Getting Started
 
+### Install
+1. Instal keras==2.3.1
+2. git clone https://github.com/ccalvin97/CV-Semantic-Segmentation 
+3. Install dependencies: pip install -r requirements.txt  
+
+## Environment in Azure   
+Computer - Standard NC6s_v3   
+conda environment - azureml_py36_tensorflow  
+keras - 2.3.1  
+CUDNN - 7.6.5  
+CUDA - 10.1.243  
+numpy - 1.18.5 
+opencv-python-headless -  4.4.0.46 
+tensorflow - 2.1.0 
+yacs - 0.1.8  
+tqdm - 4.50.2   
+imageio - 2.9.0
+
+
+### Data preparation
+Your directory tree should be look like this:
+````bash
+$SEG_ROOT/data
+├── urbanisation
+│   ├── test
+│   ├── train
+│   └── val
+
 ### Prerequisites
 
 * Keras 2.0
@@ -27,27 +55,6 @@ apt-get install -y libsm6 libxext6 libxrender-dev
 pip install opencv-python
 ```
 
-### Installing
-
-Install the module
-
-```shell
-pip install keras-segmentation
-```
-
-or 
-
-```shell
-pip install git+https://github.com/divamgupta/image-segmentation-keras
-```
-
-### or
-
-```shell
-git clone https://github.com/divamgupta/image-segmentation-keras
-cd image-segmentation-keras
-python setup.py install
-```
 
 
 ## Pre-trained models:
@@ -97,14 +104,6 @@ cv2.imwrite( "ann_1.png" ,ann_img )
 
 Only use bmp or png format for the annotation images.
 
-## Download the sample prepared dataset
-
-Download and extract the following:
-
-https://drive.google.com/file/d/0B0d9ZiqAgFkiOHR1NTJhWVJMNEU/view?usp=sharing
-
-You will get a folder named dataset1/
-
 
 ## Using the python module
 
@@ -132,29 +131,6 @@ plt.imshow(out)
 # evaluating the model 
 print(model.evaluate_segmentation( inp_images_dir="dataset1/images_prepped_test/"  , annotations_dir="dataset1/annotations_prepped_test/" ) )
 
-```
-
-
-## Usage via command line
-You can also use the tool just using command line
-
-### Visualizing the prepared data
-
-You can also visualize your prepared annotations for verification of the prepared data.
-
-
-```shell
-python -m keras_segmentation verify_dataset \
- --images_path="dataset1/images_prepped_train/" \
- --segs_path="dataset1/annotations_prepped_train/"  \
- --n_classes=50
-```
-
-```shell
-python -m keras_segmentation visualize_dataset \
- --images_path="dataset1/images_prepped_train/" \
- --segs_path="dataset1/annotations_prepped_train/"  \
- --n_classes=50
 ```
 
 
