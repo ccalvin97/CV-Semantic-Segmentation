@@ -2,9 +2,9 @@
 
 ## Research Paper  
 **U-Net: https://arxiv.org/abs/1505.04597**  
-**PSPNet:https://hszhao.github.io/projects/pspnet**    
+**PSPNet:https://arxiv.org/abs/1612.01105**    
 **ResNet:http://arxiv.org/abs/1512.03385, http://image-net.org/challenges/LSVRC/2015/**     
-**VGGNet:https://github.com/ry/tensorflow-vgg16, https://github.com/ethereon/caffe-tensorflow**    
+**VGGNet:https://arxiv.org/abs/1409.1556, https://github.com/ethereon/caffe-tensorflow**    
 
 ## Contribution   
 kuancalvin2016@gmail.com
