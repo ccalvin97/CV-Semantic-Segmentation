@@ -37,24 +37,14 @@ imageio - 2.9.0
 
 ### Data preparation
 Your directory tree should be look like this:
-````bash
 $SEG_ROOT/data
 ├── urbanisation
 │   ├── test
 │   ├── train
 │   └── val
 
-### Prerequisites
-
-* Keras 2.0
-* opencv for python
-* Theano / Tensorflow / CNTK
-
-```shell
-apt-get install -y libsm6 libxext6 libxrender-dev
-pip install opencv-python
-```
-
+## Start  
+python model_vgg+unet.py   
 
 
 ## Pre-trained models:
