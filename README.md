@@ -1,2 +1,2 @@
-# CV-Semantic-Segmentation in Tensorflow, Keras & Pytorch   
+# CV-Semantic-Segmentation in Tf, Keras & Pytorch   
 Computer Vision - Semantic Segmentation
