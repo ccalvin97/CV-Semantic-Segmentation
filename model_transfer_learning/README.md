@@ -23,6 +23,7 @@ Following models are supported and tested:
 
 ## Environment in Azure   
 Computer - Standard NC6s_v3   
+OS - Ubuntu 18.04  
 conda environment - azureml_py36_tensorflow  
 keras - 2.3.1  
 CUDNN - 7.6.5  
@@ -33,6 +34,9 @@ tensorflow - 2.1.0
 yacs - 0.1.8    
 tqdm - 4.50.2    
 imageio - 2.9.0   
+scikit-image - 0.17.2   
+Shapely - 1.7.1   
+tifffile - 2020.9.3   
 
 
 ### Data preparation  
@@ -45,32 +49,7 @@ $SEG_ROOT/data
 │   └── val  
 ````  
 
-
-## Start  
-python model_vgg+unet.py   
-
-
-## Pre-trained models:
-```python
-from keras_segmentation.pretrained import pspnet_50_ADE_20K , pspnet_101_cityscapes, pspnet_101_voc12
-
-model = pspnet_50_ADE_20K() # load the pretrained model trained on ADE20k dataset
-
-model = pspnet_101_cityscapes() # load the pretrained model trained on Cityscapes dataset
-
-model = pspnet_101_voc12() # load the pretrained model trained on Pascal VOC 2012 dataset
-
-# load any of the 3 pretrained models
-
-out = model.predict_segmentation(
-    inp="input_image.jpg",
-    out_fname="out.png"
-)
-
-```
-
-
-### Preparing the data for training
+### Preparing the data for training  
 
 You need to make two folders
 
@@ -96,6 +75,10 @@ cv2.imwrite( "ann_1.png" ,ann_img )
 ```
 
 Only use bmp or png format for the annotation images.
+
+
+## Start  
+python model_vgg+unet.py   
 
 
 ## Using the python module
