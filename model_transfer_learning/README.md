@@ -1,64 +1,16 @@
-# Image Segmentation Keras : Implementation of Segnet, FCN, UNet, PSPNet and other models in Keras.
+# Image Segmentation Keras : Implementation of UNet, PSPNet.
 
-[![PyPI version](https://badge.fury.io/py/keras-segmentation.svg)](https://badge.fury.io/py/keras-segmentation)
-[![Downloads](https://pepy.tech/badge/keras-segmentation)](https://pepy.tech/project/keras-segmentation)
-[![Build Status](https://travis-ci.org/divamgupta/image-segmentation-keras.png)](https://travis-ci.org/divamgupta/image-segmentation-keras)
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/divamgupta)
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
-[![Twitter](https://img.shields.io/twitter/url.svg?label=Follow%20%40divamgupta&style=social&url=https%3A%2F%2Ftwitter.com%2Fdivamgupta)](https://twitter.com/divamgupta)
-
-
-
-Implementation of various Deep Image Segmentation models in keras.
-
-Link to the full blog post with tutorial : https://divamgupta.com/image-segmentation/2019/06/06/deep-learning-semantic-segmentation-keras.html
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/sunshineatnoon/Paper-Collection/master/images/FCN1.png" width="50%" >
-</p>
-
-## Working Google Colab Examples:
-* Python Interface: https://colab.research.google.com/drive/1q_eCYEzKxixpCKH1YDsLnsvgxl92ORcv?usp=sharing
-* CLI Interface: https://colab.research.google.com/drive/1Kpy4QGFZ2ZHm69mPfkmLSUes8kj6Bjyi?usp=sharing
-
-
-## Our Other Repositories
-- [Attention based Language Translation in Keras](https://github.com/divamgupta/attention-translation-keras)
-- [Ladder Network in Keras](https://github.com/divamgupta/ladder_network_keras)  model achives 98% test accuracy on MNIST with just 100 labeled examples
-
-### Top Contributors
-
-* [Divam Gupta](https://divamgupta.com) [![Twitter](https://img.shields.io/twitter/url.svg?label=Follow%20%40divamgupta&style=social&url=https%3A%2F%2Ftwitter.com%2Fdivamgupta)](https://twitter.com/divamgupta)
-* [Rounaq Jhunjhunu wala](https://github.com/rjalfa)
-* [Marius Juston](https://github.com/Marius-Juston)
-* [JaledMC](https://github.com/JaledMC)
+## Contribution   
+kuancalvin2016@gmail.com
 
 ## Models
 
-Following models are supported:
+Following models are supported and tested:
 
 | model_name       | Base Model        | Segmentation Model |
 |------------------|-------------------|--------------------|
-| fcn_8            | Vanilla CNN       | FCN8               |
-| fcn_32           | Vanilla CNN       | FCN8               |
-| fcn_8_vgg        | VGG 16            | FCN8               |
-| fcn_32_vgg       | VGG 16            | FCN32              |
-| fcn_8_resnet50   | Resnet-50         | FCN32              |
-| fcn_32_resnet50  | Resnet-50         | FCN32              |
-| fcn_8_mobilenet  | MobileNet         | FCN32              |
-| fcn_32_mobilenet | MobileNet         | FCN32              |
-| pspnet           | Vanilla CNN       | PSPNet             |
-| vgg_pspnet       | VGG 16            | PSPNet             |
 | resnet50_pspnet  | Resnet-50         | PSPNet             |
-| unet_mini        | Vanilla Mini CNN  | U-Net              |
-| unet             | Vanilla CNN       | U-Net              |
 | vgg_unet         | VGG 16            | U-Net              |
-| resnet50_unet    | Resnet-50         | U-Net              |
-| mobilenet_unet   | MobileNet         | U-Net              |
-| segnet           | Vanilla CNN       | Segnet             |
-| vgg_segnet       | VGG 16            | Segnet             |
-| resnet50_segnet  | Resnet-50         | Segnet             |
-| mobilenet_segnet | MobileNet         | Segnet             |
 
 
 Example results for the pre-trained models provided :
@@ -249,21 +201,6 @@ python -m keras_segmentation predict \
 
 
 
-### Video inference
-
-To get predictions of a video
-```shell
-python -m keras_segmentation predict_video \
- --checkpoints_path="path_to_checkpoints" \
- --input="path_to_video" \
- --output_file="path_for_save_inferenced_video" \
- --display
-```
-
-If you want to make predictions on your webcam, don't use `--input`, or pass your device number: `--input 0`  
-`--display` opens a window with the predicted video. Remove this argument when using a headless system.
-
-
 ### Model Evaluation 
 
 To get the IoU scores 
@@ -300,42 +237,3 @@ new_model.train(
 
 
 ```
-
-## Projects using keras-segmentation
-Here are a few projects which are using our library :
-* https://github.com/SteliosTsop/QF-image-segmentation-keras [paper](https://arxiv.org/pdf/1908.02242.pdf)
-* https://github.com/willembressers/bouquet_quality
-* https://github.com/jqueguiner/image-segmentation
-* https://github.com/pan0rama/CS230-Microcrystal-Facet-Segmentation
-* https://github.com/theerawatramchuen/Keras_Segmentation
-* https://github.com/neheller/labels18
-* https://github.com/Divyam10/Face-Matting-using-Unet
-* https://github.com/shsh-a/segmentation-over-web
-* https://github.com/chenwe73/deep_active_learning_segmentation
-* https://github.com/vigneshrajap/vision-based-navigation-agri-fields
-* https://github.com/ronalddas/Pneumonia-Detection
-* https://github.com/Aiwiscal/ECG_UNet
-* https://github.com/TianzhongSong/Unet-for-Person-Segmentation
-* https://github.com/Guyanqi/GMDNN
-* https://github.com/kozemzak/prostate-lesion-segmentation
-* https://github.com/lixiaoyu12138/fcn-date
-* https://github.com/sagarbhokre/LyftChallenge
-* https://github.com/TianzhongSong/Person-Segmentation-Keras
-* https://github.com/divyanshpuri02/COCO_2018-Stuff-Segmentation-Challenge
-* https://github.com/XiangbingJi/Stanford-cs230-final-project
-* https://github.com/lsh1994/keras-segmentation
-* https://github.com/SpirinEgor/mobile_semantic_segmentation
-* https://github.com/LeadingIndiaAI/COCO-DATASET-STUFF-SEGMENTATION-CHALLENGE
-* https://github.com/lidongyue12138/Image-Segmentation-by-Keras
-* https://github.com/laoj2/segnet_crfasrnn
-* https://github.com/rancheng/AirSimProjects
-* https://github.com/RadiumScriptTang/cartoon_segmentation
-* https://github.com/dquail/NerveSegmentation
-* https://github.com/Bhomik/SemanticHumanMatting
-* https://github.com/Symefa/FP-Biomedik-Breast-Cancer
-* https://github.com/Alpha-Monocerotis/PDF_FigureTable_Extraction
-* https://github.com/rusito-23/mobile_unet_segmentation
-* https://github.com/Philliec459/ThinSection-image-segmentation-keras
-
-If you use our code in a publicly available project, please add the link here ( by posting an issue or creating a PR )
-
