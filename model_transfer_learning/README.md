@@ -36,12 +36,15 @@ imageio - 2.9.0
 
 
 ### Data preparation  
+````bash  
 Your directory tree should be look like this:  
 $SEG_ROOT/data  
 ├── urbanisation  
 │   ├── test  
 │   ├── train  
 │   └── val  
+````  
+
 
 ## Start  
 python model_vgg+unet.py   
