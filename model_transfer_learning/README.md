@@ -35,13 +35,13 @@ tqdm - 4.50.2
 imageio - 2.9.0   
 
 
-### Data preparation
-Your directory tree should be look like this:
-$SEG_ROOT/data
-├── urbanisation
-│   ├── test
-│   ├── train
-│   └── val
+### Data preparation  
+Your directory tree should be look like this:  
+$SEG_ROOT/data  
+├── urbanisation  
+│   ├── test  
+│   ├── train  
+│   └── val  
 
 ## Start  
 python model_vgg+unet.py   
