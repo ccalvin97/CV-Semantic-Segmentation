@@ -13,13 +13,6 @@ Following models are supported and tested:
 | vgg_unet         | VGG 16            | U-Net              |
 
 
-Example results for the pre-trained models provided :
-
-Input Image            |  Output Segmentation Image
-:-------------------------:|:-------------------------:
-![](sample_images/1_input.jpg)  |  ![](sample_images/1_output.png)
-![](sample_images/3_input.jpg)  |  ![](sample_images/3_output.png)
-
 
 ## Getting Started
 
