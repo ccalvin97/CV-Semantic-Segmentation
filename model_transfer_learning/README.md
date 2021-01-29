@@ -11,7 +11,7 @@ Following models are supported and tested:
 |------------------|-------------------|--------------------|
 | resnet50_pspnet  | Resnet-50         | PSPNet             |
 | vgg_unet         | VGG 16            | U-Net              |
-
+| unet             | NA                | U-Net              |
 
 
 ## Getting Started
