@@ -27,12 +27,12 @@ conda environment - azureml_py36_tensorflow
 keras - 2.3.1  
 CUDNN - 7.6.5  
 CUDA - 10.1.243  
-numpy - 1.18.5 
-opencv-python-headless -  4.4.0.46 
-tensorflow - 2.1.0 
-yacs - 0.1.8  
-tqdm - 4.50.2   
-imageio - 2.9.0
+numpy - 1.18.5  
+opencv-python-headless -  4.4.0.46   
+tensorflow - 2.1.0   
+yacs - 0.1.8    
+tqdm - 4.50.2    
+imageio - 2.9.0   
 
 
 ### Data preparation
