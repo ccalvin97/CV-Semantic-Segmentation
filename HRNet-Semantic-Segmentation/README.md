@@ -1,5 +1,8 @@
 # High-resolution networks (HRNets) for Semantic Segmentation in Urbanisation Task   
 
+## Research Paper  
+**HRNet: https://arxiv.org/abs/1904.04514**  
+
 ## Contribution  
 Edited by kuancalvin2016@gmail.com  
 Original Code from HRNet Official Github  
@@ -8,9 +11,8 @@ Original Code from HRNet Official Github
 This is the official code of [high-resolution representations for Semantic Segmentation](https://arxiv.org/abs/1904.04514). 
 We augment the HRNet with a very simple segmentation head shown in the figure below. We aggregate the output representations at four different resolutions, and then use a 1x1 convolutions to fuse these representations. The output representations is fed into the classifier. We evaluate our methods on three datasets, Cityscapes, PASCAL-Context and LIP.
 
-![](figures/seg-hrnet.png)
 
-## Segmentation models
+## Models  
 HRNetV2 Segmentation models are now available. All the results are reproduced by using this repo!!!
 
 The models are initialized by the weights pretrained on the ImageNet. You can download the pretrained models from  https://github.com/HRNet/HRNet-Image-Classification.
@@ -26,14 +28,15 @@ Performance on the Cityscapes dataset. The models are trained and tested with th
 | HRNetV2-W18-Small-v1 | Train | Val | 1.5M | 31.1 | No | No | No | No | 70.3 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gSEsg-2sxTmZL2AT?e=AqHbjh)/[BaiduYun(Access Code:63be)](https://pan.baidu.com/s/17pr-he0HEBycHtUdfqWr3g)|
 | HRNetV2-W18-Small-v2 | Train | Val | 3.9M | 71.6 | No | No | No | No | 76.2 | [OneDrive](https://1drv.ms/u/s!Aus8VCZ_C_33gSAL4OurOW0RX4JH?e=ptLwpW)/[BaiduYun(Access Code:p1qf)](https://pan.baidu.com/s/1EHsZhqxWI0KF304Ptcj5-A)|
 
-## Quick start
+## Getting start
 ### Install
 1. Instal torch==0.4.1.post2 
 2. git clone https://github.com/HRNet/HRNet-Semantic-Segmentation $SEG_ROOT  
 3. Install dependencies: pip install -r requirements.txt  
 
 ## Environment in Azure   
-Computer - Standard NC6s_v3   
+Computer - Standard NC6s_v3  
+OS - Ubuntu 18.04  
 conda environment - py37_pytorch  
 torch - 0.4.1.post2  
 CUDNN - 7.6.5  
