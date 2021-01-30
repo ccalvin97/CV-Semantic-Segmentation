@@ -179,12 +179,100 @@ def _load_augmentation_aug_all():
         random_order=True
     )
 
+#######################
+def _load_augmentation_urbanisation_v1():
+    """ Load image augmentation model """
+    original=1024
+    resize_pixel=640
+    pad_num_per_side=int((original-resize_pixel)/2)
+    
+    def sometimes(aug):
+        return iaa.Sometimes(0.5, aug)
 
+    return iaa.Sequential(
+        [
+            # apply the following augmenters to most images
+            iaa.Fliplr(0.3),  # horizontally flip 50% of all images
+            iaa.Flipud(0.2),  # vertically flip 20% of all images
+            # crop images by -5% to 10% of their height/width
+            iaa.Resize(((0.7,1.0)),
+            iaa.PadToFixedSize(width=original, height=original,pad_mode='reflect'
+            ),
+            iaa.SomeOf((0, 5),
+            [
+                # convert images into their superpixel representation
+                sometimes(iaa.Superpixels(
+                    p_replace=(0, 1.0), n_segments=(20, 200))),
+                iaa.OneOf([
+                    # blur images with a sigma between 0 and 3.0
+                    iaa.GaussianBlur((0, 3.0)),
+                    # blur image using local means with kernel sizes
+                    # between 2 and 7
+                    iaa.AverageBlur(k=(2, 7)),
+                    # blur image using local medians with kernel sizes
+                    # between 2 and 7
+                    iaa.MedianBlur(k=(3, 11)),
+                ]),
+                iaa.Sharpen(alpha=(0, 1.0), lightness=(
+                            0.75, 1.5)),  # sharpen images
+                iaa.Emboss(alpha=(0, 1.0), strength=(
+                    0, 2.0)),  # emboss images
+                # search either for all edges or for directed edges,
+                # blend the result with the original image using a blobby mask
+                iaa.SimplexNoiseAlpha(iaa.OneOf([
+                    iaa.EdgeDetect(alpha=(0.5, 1.0)),
+                    iaa.DirectedEdgeDetect(
+                        alpha=(0.5, 1.0), direction=(0.0, 1.0)),
+                ])),
+                # add gaussian noise to images
+                iaa.AdditiveGaussianNoise(loc=0, scale=(
+                    0.0, 0.05*255), per_channel=0.5),
+                iaa.OneOf([
+                    # randomly remove up to 10% of the pixels
+                    iaa.Dropout((0.01, 0.1), per_channel=0.5),
+                    iaa.CoarseDropout((0.03, 0.15), size_percent=(
+                        0.02, 0.05), per_channel=0.2),
+                ]),
+                # change brightness of images (by -10 to 10 of original value)
+                iaa.Add((-10, 10), per_channel=0.5),
+                # change hue and saturation
+                iaa.AddToHueAndSaturation((-20, 20)),
+                # either change the brightness of the whole image (sometimes
+                # per channel) or change the brightness of subareas
+                iaa.OneOf([
+                    iaa.Multiply(
+                                (0.5, 1.5), per_channel=0.5),
+                    iaa.FrequencyNoiseAlpha(
+                        exponent=(-4, 0),
+                        first=iaa.Multiply(
+                            (0.5, 1.5), per_channel=True),
+                        second=iaa.ContrastNormalization(
+                            (0.5, 2.0))
+                    )
+                ]),
+                # improve or worsen the contrast
+                iaa.ContrastNormalization((0.5, 2.0), per_channel=0.5),
+                iaa.Grayscale(alpha=(0.0, 1.0)),
+                # move pixels locally around (with random strengths)
+                sometimes(iaa.ElasticTransformation(
+                    alpha=(0.5, 3.5), sigma=0.25)),
+                # sometimes move parts of the image around
+                sometimes(iaa.PiecewiseAffine(scale=(0.01, 0.05))),
+                sometimes(iaa.PerspectiveTransform(scale=(0.01, 0.1)))
+            ],
+                random_order=True
+            )
+        ],
+        random_order=True
+    )
+
+###################################
 augmentation_functions = {
     "aug_all": _load_augmentation_aug_all,
     "aug_all2": _load_augmentation_aug_all2,
     "aug_geometric": _load_augmentation_aug_geometric,
-    "aug_non_geometric": _load_augmentation_aug_non_geometric
+    "aug_non_geometric": _load_augmentation_aug_non_geometric,
+    "aug_urbanisation_v1":_load_augmentation_urbanisation_v1
 }
 
 
