@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Copyright (c) Microsoft
 # Licensed under the MIT License.
 # Written by Ke Sun (sunk@mail.ustc.edu.cn)
@@ -93,12 +93,17 @@ def validate(config, testloader, model, writer_dict):
     IoU_array = (tp / np.maximum(1.0, pos + res - tp))
     mean_IoU = IoU_array.mean()
 
+    ####
+    tn_rate = confusion_matrix[0][0]/pos[0]
+    tp_rate = confusion_matrix[1][1]/pos[1]
+    ####
+
     writer = writer_dict['writer']
     global_steps = writer_dict['valid_global_steps']
     writer.add_scalar('valid_loss', ave_loss.average(), global_steps)
     writer.add_scalar('valid_mIoU', mean_IoU, global_steps)
     writer_dict['valid_global_steps'] = global_steps + 1
-    return ave_loss.average(), mean_IoU, IoU_array
+    return ave_loss.average(), mean_IoU, IoU_array, tn_rate, tp_rate
 
 def testval(config, test_dataset, testloader, model, 
         sv_dir='', sv_pred=False):
