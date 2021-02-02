@@ -102,6 +102,8 @@ def validate(config, testloader, model, writer_dict):
     global_steps = writer_dict['valid_global_steps']
     writer.add_scalar('valid_loss', ave_loss.average(), global_steps)
     writer.add_scalar('valid_mIoU', mean_IoU, global_steps)
+    writer.add_scalar('tn_rate', tn_rate, global_steps)
+    writer.add_scalar('tp_rate', tp_rate, global_steps)
     writer_dict['valid_global_steps'] = global_steps + 1
     return ave_loss.average(), mean_IoU, IoU_array, tn_rate, tp_rate
 
