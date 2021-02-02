@@ -221,12 +221,15 @@ def main():
         }, os.path.join(final_output_dir,'checkpoint.pth.tar'))
         valid_loss, mean_IoU, IoU_array, tn_rate, tp_rate = validate(
                         config, testloader, model, writer_dict)
-        ‘’‘
+        '''
         Confusion Matrix = [[a,b], [c,d]]
         IOU Array = [A, B]
         A = a / (a+b+c)
         B = d / (b+c+d)
-        ’‘’
+        
+        A = The Iou for label 0
+        B = The Iou for label 1
+        '''
         
         if mean_IoU > best_mIoU:
             best_mIoU = mean_IoU
