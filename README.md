@@ -8,3 +8,9 @@ Computer Vision - Semantic Segmentation
 | resnet50_pspnet      | Resnet-50     | PSPNet             | 91%  | NA       | Bad    | 
 | vgg_unet             | VGG 16        | U-Net              | 96%  | 75%      | Best   | 
 | unet                 | NA            | U-Net              | 91%  | NA       | Bad    | 
+
+
+<figure class="half">
+    <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_.png">
+    <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_1.png">
+</figure>
