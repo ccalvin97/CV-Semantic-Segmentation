@@ -10,7 +10,8 @@ Computer Vision - Semantic Segmentation
 | unet                 | NA            | U-Net              | 91%  | NA       | Bad    | 
 
 
-<center class="half">
-    <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_.png" width="200"/>
-    <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_1.png" width="200"/>
-</center>
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_.png" width="200)
+![](https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_1.png" width="200)
+
