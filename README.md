@@ -10,7 +10,7 @@ Computer Vision - Semantic Segmentation
 | unet                 | NA            | U-Net              | 91%  | NA       | Bad    | 
 
 
-<figure class="half">
+<center class="half">
     <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_.png" width="300"/>
     <img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_1.png" width="300"/>
-</figure>
+</center>
