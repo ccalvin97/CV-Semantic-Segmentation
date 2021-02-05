@@ -11,7 +11,7 @@ Computer Vision - Semantic Segmentation
 
 
 
-## Australia  
+## Australia Prediction Example  
 <div align="center"><img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_.png" width="400"/><img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/austin16_20_1.png" width="400"/></center>  
 
 <div align="center"><img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/test_215_.png" width="400"/><img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/Picture/test_215_1.png" width="400"/></center>  
