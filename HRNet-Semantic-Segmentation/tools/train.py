@@ -235,7 +235,7 @@ def main():
             best_mIoU = mean_IoU
             torch.save(model.module.state_dict(),
                        os.path.join(final_output_dir, 'best.pth'))
-            msg = 'Loss: {:.3f}, MeanIoU: {: 4.4f}, Best_mIoU: {: 4.4f}, tn_rate = {:,.3f}, tp_rate = {:,.3f}'.format(
+        msg = 'Loss: {:.3f}, MeanIoU: {: 4.4f}, Best_mIoU: {: 4.4f}, tn_rate = {:,.3f}, tp_rate = {:,.3f}'.format(
                     valid_loss, mean_IoU, best_mIoU, tn_rate, tp_rate)
         logging.info(msg)
         logging.info(IoU_array)

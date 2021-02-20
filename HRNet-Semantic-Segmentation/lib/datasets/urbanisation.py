@@ -92,6 +92,7 @@ class urbanisation(BaseDataset):
         else:
             for k, v in self.label_mapping.items():
                 label[temp == k] = v
+
         return label
 
     def __getitem__(self, index):
