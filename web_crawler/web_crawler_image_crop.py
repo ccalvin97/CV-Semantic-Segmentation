@@ -19,8 +19,8 @@ def main():
     parser = argparse.ArgumentParser(description='welcome to the web crawling programme for splitting image to 1024*1024')
     parser.add_argument('-path', '--path', type=str,
         help='path of input data dir  ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel')
-    parser.add_argument('-path_out', '--path_out', type=str,
-        help='data out abs address for picture ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')   
+   # parser.add_argument('-path_out', '--path_out', type=str,
+   #     help='data out abs address for picture ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')   
     parser.add_argument('-file_type', '--file_type', type=str,
             help='file type for norm expression, ex: png, jpeg ')
 
@@ -42,7 +42,7 @@ def main():
 
     for image in address_list:
         a, b = os.path.splitext(image)
-        img_name=image.split('\\')[-1].split('.')[0]+'_'+image.split('\\')[-1].split('.')[1]
+        img_name=image.split('/')[-1].split('.')[0]+'_'+image.split('\\')[-1].split('.')[1]
         if case ==1: 
             img = io.imread(image)
             img = np.array(img) 
@@ -54,7 +54,7 @@ def main():
             img = Image.open(image)
   
         if img.shape[0] ==1024:
-            cv2.imwrite( args.path_out + '\\' + img_name + '.png' , img,[cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite( args.path + '/' + img_name + '.png' , img,[cv2.IMWRITE_JPEG_QUALITY, 100])
             continue
         width=img.shape[0]
         hight=img.shape[1]
@@ -74,15 +74,17 @@ def main():
                         pass
                     else:
                         try:
-                            cv2.imwrite( args.path_out + '\\' + img_name + "__" + str(id) + '.png' , new_img,\
+                            cv2.imwrite( args.path + '/' + img_name + "__" + str(id) + '.png' , new_img,\
                                         [cv2.IMWRITE_JPEG_QUALITY, 100])
+                            id += 1
                         except:
-                            print('error')
-
-                id += 1
+                            print('error')        
+                else:
+                    print('shape  error')
                 j += w   #滑动步长
             i = i + w
-
+            
+        os.remove(image)
             
             
         

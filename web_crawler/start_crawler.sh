@@ -18,11 +18,15 @@ path_out_filter="/home/GDDC9/web_crawler/out_shanxi_0043_1024_final_filter"
 
 
 
-python -W ignore print_map_png_v10.py -p_in $p_in  -p_out $p_out_map -f all -p_out_filter $p_out_filter -crs $crs -p_out_3096 $p_out_map_3096 -p_out_filter_3096 $p_out_filter_3096
+#python -W ignore print_map_png_v10.py -p_in $p_in  -p_out $p_out_map -f all -p_out_filter $p_out_filter -crs $crs \
+#    -p_out_3096 $p_out_map_3096 -p_out_filter_3096 $p_out_filter_3096
+
+python size_detection.py -path_map $p_out_map  -path_filter $p_out_filter
+
+python -W ignore web_crawler_image_crop.py -path $p_out_map_3096 -file_type png
+python -W ignore web_crawler_image_crop.py -path $p_out_filter_3096 -file_type png
 
 
-#python -W ignore web_crawler_image_crop.py -path  /home/GDDC9/web_crawler/out_shanxi_0043_1024 -path_out /home/GDDC9/web_crawler/out_shanxi_0043_1024_final
-#python -W ignore web_crawler_image_crop.py -path  /home/GDDC9/web_crawler/out_shanxi_0043_1024 -path_out /home/GDDC9/web_crawler/out_shanxi_0043_1024_final
 
 
 : << !
