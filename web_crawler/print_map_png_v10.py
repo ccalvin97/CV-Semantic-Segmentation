@@ -451,19 +451,26 @@ def main():
         help='path of input data dir  ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel')
     parser.add_argument('-p_out', '--p_out', type=str,
         help='data out abs address for picture ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')   
-    parser.add_argument('-colour', '--colour', type=str, default='blue',
-        help=' colour for the frame of output, ex: red')
-    parser.add_argument('-f', '--f', type=str, default='crawl',
-        help=' function crawl or filter or all')
     parser.add_argument('-p_out_filter', '--p_out_filter', type=str,
         help='data out abs address for filter files ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')
+    parser.add_argument('-p_out_3096', '--p_out_3096', type=str,
+        help='data out abs address for picture ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')
+    parser.add_argument('-p_out_filter_3096', '--p_out_filter_3096', type=str,
+        help='data out abs address for filter files ex:C:\\Users\\heca0002\\Desktop\\GIS\\map_example\\data_excel ')
+
+
     parser.add_argument('-crs', '--crs', type=int, default=0,
             help='crs is a 4 digits numbers ex: 4326')
+    parser.add_argument('-f', '--f', type=str, default='crawl',
+        help=' function crawl or filter or all')
+    parser.add_argument('-colour', '--colour', type=str, default='blue',
+        help=' colour for the frame of output, ex: red')
+
     args = parser.parse_args()
           
 
-    df  = input_data_large(args.p_out, args.p_in, args.colour, args.p_out_filter, args.crs).input_all_data_block(args.p_in)
-    df2 = input_data_large(args.p_out, args.p_in, args.colour, args.p_out_filter, args.crs).input_all_data_grid(args.p_in) 
+    df  = input_data_large(args.p_out_3096, args.p_in, args.colour, args.p_out_filter_3096, args.crs).input_all_data_block(args.p_in)
+    df2 = input_data_large(args.p_out_3096, args.p_in, args.colour, args.p_out_filter_3096, args.crs).input_all_data_grid(args.p_in) 
     df  = pd.concat([df,df2],ignore_index=True,sort=False)
     df=df.to_crs(epsg=args.crs)
     df_large=df[df['geometry'].area *0.000001 >  2.05]
@@ -510,13 +517,13 @@ def main():
         print('Start all function')
         print('Start Large')
         df=df_large
-        partial_func = partial(input_data_large(args.p_out, args.p_in, args.colour, args.p_out_filter, args.crs).cover_calculation, df=df)
+        partial_func = partial(input_data_large(args.p_out_3096, args.p_in, args.colour, args.p_out_filter_3096, args.crs).cover_calculation, df=df)
         pool = Pool()
         pool.map(partial_func, input_list_large)
         pool.close()
         pool.join()
 
-        partial_func1 = partial(input_data_large(args.p_out, args.p_in, args.colour, args.p_out_filter, args.crs).filter_create, df=df)
+        partial_func1 = partial(input_data_large(args.p_out_3096, args.p_in, args.colour, args.p_out_filter_3096, args.crs).filter_create, df=df)
         pool = Pool()
         pool.map(partial_func1, input_list_large)
         pool.close()
