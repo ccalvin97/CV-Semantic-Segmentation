@@ -1,14 +1,27 @@
 #!/bin/bash
 
 ## Start Validation for HRNet ##
+InputStra="/home/GDDC-CV1/Desktop/data_1024_hrnet/data/urbanisation/x/test/"
+out_addr="/home/GDDC-CV1/Desktop/data_1024_hrnet/data/list/urbanisation/test.lst"
 
-python tools/test.py \
+python -W ignore /home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/HRNet-Semantic-Segmentation/tools/pred_lst_transform.py \
+    -path $InputStra -path_out $out_addr
+if [ "$?" == "0" ]
+then
+    python tools/test.py \
 --cfg /home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/HRNet-Semantic-Segmentation/experiments/\
 seg_hrnet_w18_small_v1_512x1024_sgd_lr1e-2_wd5e-4_bs_12_epoch484.yaml \
+DATASET.TEST_SET list/urbanisation/test.lst \
 TEST.MODEL_FILE /home/GDDC-CV1/Desktop/CV-Semantic-Segmentation/HRNet-Semantic-Segmentation/output/\
-urbanisation/seg_hrnet_w18_small_v1_512x1024_sgd_lr1e-2_wd5e-4_bs_12_epoch484/best.pth \
+urbanisation/ok_production_level/best.pth \
 TEST.SCALE_LIST [1] \
 TEST.FLIP_TEST False
+    echo "pass"
+else
+    echo "pred_lst_transform.py error"
+    exit 1
+fi
+
 
 
 : << !
