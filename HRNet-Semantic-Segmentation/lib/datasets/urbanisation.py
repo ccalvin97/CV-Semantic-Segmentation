@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#/usr/bin/env python
 # coding: utf-8
 # -*- coding: utf-8 -*-
 
@@ -60,7 +60,7 @@ class urbanisation(BaseDataset):
             self.files = self.files[:num_samples]
         ## 這邊mapping 用途是原始datd灰度圖為0-33, 但example只有19??? 所以有些label不要
         self.label_mapping = {0:0, 1:1}
-        self.class_weights = torch.FloatTensor([1,1]).cuda()
+        self.class_weights = torch.FloatTensor([0.5,2]).cuda()
     
     def read_files(self):
         files = []
@@ -187,12 +187,16 @@ class urbanisation(BaseDataset):
         return palette
 
     def save_pred(self, preds, sv_path, name):
-        palette = self.get_palette(256)
+        # Default palette setting
+        # palette = self.get_palette(256)
+        palette = [0, 0, 0, 255, 255, 255]
+
         preds = np.asarray(np.argmax(preds, axis=1), dtype=np.uint8)
         for i in range(preds.shape[0]):
             pred = self.convert_label(preds[i], inverse=True)
             save_img = Image.fromarray(pred)
-            save_img.putpalette(palette)
+            #save_img.putpalette(palette)
+            save_img.putpalette(palette*64)
             save_img.save(os.path.join(sv_path, name[i]+'.png'))
 
         
