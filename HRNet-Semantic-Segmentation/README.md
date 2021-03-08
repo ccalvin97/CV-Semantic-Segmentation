@@ -111,6 +111,9 @@ python tools/test.py --cfg experiments/cityscapes/seg_hrnet_w48_train_512x1024_s
 | Metrics Tn, Tp rate mIou | Yes  | 
 | Metrics Dice loss & Acc | No, they are unstable & sometimes misleading  | 
 | Multi-scale validation| No, because we have had control prediction picture target size  | 
+| Data normalisation| Yes, speedup training  |    
+| Data Cleaning | Yes, completed rural deleted to balance the label  |    
+
 
 ## Citation
 If you find this work or code is helpful in your research, please cite:
