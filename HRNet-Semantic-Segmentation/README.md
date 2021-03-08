@@ -3,6 +3,14 @@
 ## Research Paper  
 **HRNet: https://arxiv.org/abs/1904.04514**  
 
+<div align="center">   
+<img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/HRNet-Semantic-Segmentation/graph/HRNet.jpg" />
+</div>  
+<div align="center">   
+<img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/HRNet-Semantic-Segmentation/graph/v2-4cfe795071d15b3d32249369534183c3_1440w.jpg" />
+</div>  
+
+
 ## Contribution  
 Edited by kuancalvin2016@gmail.com  
 Original Code from HRNet Official Github  
