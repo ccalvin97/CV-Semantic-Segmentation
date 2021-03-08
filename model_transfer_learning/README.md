@@ -204,3 +204,5 @@ new_model.train(
 | Multi-scale validation| No, because we have had control prediction picture target size  |  
 | Data normalisation| Yes, speedup training  |    
 | Data Cleaning | Yes, completed rural deleted to balance the label  |    
+| LR Adjustment | Yes, 10-4 |    
+| WD Adjustment | Yes, 10-6 |   
