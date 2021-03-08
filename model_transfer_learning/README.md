@@ -188,3 +188,18 @@ new_model.train(
 
 
 ```
+
+### Improvement Plan  
+| Detail  | Improved or not |  
+| :--: | :--: |  
+| Loss Function: Simple Cross Entropy | Yes, due to unbalanced label  | 
+| Loss Function: Weighted Cross Entropy | No needed |  
+| Loss Function: Dice Loss | No, gradient descent unstable  |  
+| Loss Function: Ohem Loss | Yes, foucs on difficult data  | 
+| Loss Function: Focal Loss | No, due to unbalanced label   | 
+| Data Augmentation flip & rotate| No, but do not use too much transformation leading to too generalism  | 
+| Data Augmentation vague & other | No, but do not use too much transformation leading to too generalism  | 
+| Metrics Tn, Tp rate mIou | Yes  | 
+| Metrics Dice loss & Acc | No, they are unstable & sometimes misleading  | 
+| Multi-scale validation| No, because we have had control prediction picture target size  |
+
