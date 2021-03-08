@@ -201,5 +201,6 @@ new_model.train(
 | Data Augmentation vague & other | No, but do not use too much transformation leading to too generalism  | 
 | Metrics Tn, Tp rate mIou | Yes  | 
 | Metrics Dice loss & Acc | No, they are unstable & sometimes misleading  | 
-| Multi-scale validation| No, because we have had control prediction picture target size  |
-
+| Multi-scale validation| No, because we have had control prediction picture target size  |  
+| Data normalisation| Yes, speedup training  |    
+| Data Cleaning | Yes, completed rural deleted to balance the label  |    
