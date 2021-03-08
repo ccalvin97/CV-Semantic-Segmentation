@@ -6,6 +6,13 @@
 **ResNet:http://arxiv.org/abs/1512.03385, http://image-net.org/challenges/LSVRC/2015/**     
 **VGGNet:https://arxiv.org/abs/1409.1556, https://github.com/ethereon/caffe-tensorflow**    
 
+<div align="center">   
+<img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/model_transfer_learning/graph/unet.png" />
+</div>  
+<div align="center">   
+<img src="https://github.com/ccalvin97/CV-Semantic-Segmentation/blob/master/model_transfer_learning/graph/vggnet.png" />
+</div>  
+
 ## Contribution   
 kuancalvin2016@gmail.com
 
