@@ -103,9 +103,9 @@ python tools/test.py --cfg experiments/cityscapes/seg_hrnet_w48_train_512x1024_s
 | Detail  | Improved or not |  
 | :--: | :--: |  
 | Loss Function: Simple Cross Entropy | No, due to unbalanced label  | 
-| Loss Function: Weighted Cross Entropy | Yes, due to unbalanced label  |  
+| Loss Function: Weighted Cross Entropy | Yes, due to unbalanced label - 0.65, 2  |  
 | Loss Function: Dice Loss | No, gradient descent unstable  |  
-| Loss Function: Ohem Loss | Yes, foucs on difficult data  | 
+| Loss Function: Ohem Loss | Yes, foucs on difficult data - Threshold 0.65, Keep 8  | 
 | Data Augmentation flip & rotate| Yes, but do not use too much transformation leading to too generalism  | 
 | Data Augmentation vague & other | No, but do not use too much transformation leading to too generalism  | 
 | Metrics Tn, Tp rate mIou | Yes  | 
@@ -113,7 +113,8 @@ python tools/test.py --cfg experiments/cityscapes/seg_hrnet_w48_train_512x1024_s
 | Multi-scale validation| No, because we have had control prediction picture target size  | 
 | Data normalisation| Yes, speedup training  |    
 | Data Cleaning | Yes, completed rural deleted to balance the label  |    
-
+| LR Adjustment | Yes, 10-4 |   
+| WD Adjustment | Yes, 10-6 |   
 
 ## Citation
 If you find this work or code is helpful in your research, please cite:
